@@ -1,0 +1,252 @@
+
+/* =========================================
+   NEUROCOGNITIVE PLATFORM
+   Global Design System
+========================================= */
+
+/* 1. Design Tokens */
+
+:root {
+  /* Brand colours */
+  --color-primary: #2875ed;
+  --color-primary-hover: #1d63d5;
+  --color-primary-light: #eaf2ff;
+
+  /* Navy */
+  --color-navy: #102e50;
+  --color-navy-dark: #0b2440;
+  --color-navy-light: #183d64;
+
+  /* Backgrounds */
+  --color-background: #f5f8fd;
+  --color-surface: #ffffff;
+  --color-surface-soft: #f8faff;
+
+  /* Text */
+  --color-text: #172b4d;
+  --color-text-secondary: #65758b;
+  --color-text-muted: #8b98aa;
+
+  /* Borders */
+  --color-border: #e3eaf4;
+  --color-border-light: #edf1f7;
+
+  /* Status colours */
+  --color-success: #16b981;
+  --color-warning: #f5a623;
+  --color-danger: #ef5350;
+  --color-info: #4385f5;
+
+  /* Pastel card backgrounds */
+  --color-blue-soft: #edf4ff;
+  --color-green-soft: #e9faf4;
+  --color-purple-soft: #f3edff;
+  --color-orange-soft: #fff5e8;
+  --color-pink-soft: #fff0f5;
+
+  /* Typography */
+  --font-primary: "Inter", "Segoe UI", Arial, sans-serif;
+
+  /* Font sizes */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+
+  /* Spacing */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+
+  /* Radius */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 18px;
+  --radius-full: 999px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(16, 46, 80, 0.06);
+  --shadow-md: 0 4px 12px rgba(16, 46, 80, 0.07);
+  --shadow-lg: 0 8px 24px rgba(16, 46, 80, 0.09);
+
+  /* Layout */
+  --sidebar-width: 220px;
+  --header-height: 68px;
+
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-normal: 250ms ease;
+}
+
+/* 2. Global Reset */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  min-width: 320px;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  font-family: var(--font-primary);
+  font-size: var(--text-base);
+  line-height: 1.5;
+  color: var(--color-text);
+  background: var(--color-background);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 3. Root Application */
+
+#root {
+  min-height: 100vh;
+  width: 100%;
+}
+
+/* 4. Typography */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--color-text);
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+h1 {
+  font-size: var(--text-3xl);
+}
+
+h2 {
+  font-size: var(--text-2xl);
+}
+
+h3 {
+  font-size: var(--text-xl);
+}
+
+p {
+  color: var(--color-text-secondary);
+}
+
+small {
+  font-size: var(--text-xs);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* 5. Form Elements */
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+input,
+textarea,
+select {
+  color: var(--color-text);
+}
+
+/* 6. Images */
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/* 7. Accessible Focus States */
+
+:focus-visible {
+  outline: 3px solid rgba(40, 117, 237, 0.35);
+  outline-offset: 2px;
+}
+
+/* 8. Selection */
+
+::selection {
+  color: var(--color-navy-dark);
+  background: #dceaff;
+}
+
+/* 9. Scrollbar */
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd6e5;
+  border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #aabbd0;
+}
+
+/* 10. Responsive Typography */
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 1.625rem;
+  }
+
+  h2 {
+    font-size: 1.375rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
