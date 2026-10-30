@@ -635,42 +635,7 @@ Planned improvements include:
 
 ---
 
-## 18. Contributing
-
-Contributions from project team members should follow the established project structure.
-
-### Suggested Workflow
-
-1. Pull the latest changes from the main branch.
-2. Create a separate feature branch.
-3. Implement the assigned functionality.
-4. Test the changes locally.
-5. Commit with a meaningful commit message.
-6. Push the feature branch.
-7. Submit a pull request for review.
-
-### Branch Naming Convention
-
-```text
-feature/feature-name
-fix/issue-description
-docs/documentation-update
-```
-
-### Commit Message Examples
-
-```text
-feat: implement user registration interface
-feat: add consultant dashboard
-fix: resolve login form validation
-docs: update project documentation
-```
-
-Avoid committing generated build files, local databases, credentials, and unnecessary dependencies.
-
----
-
-## 19. License
+## 18. License
 
 The licensing terms for this project are to be determined by the project owners.
 
