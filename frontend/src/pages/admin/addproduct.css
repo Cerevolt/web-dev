@@ -1,0 +1,36 @@
+
+.product-description {
+  margin-top: 22px;
+}
+
+.product-description textarea,
+.form-field select {
+  width: 100%;
+  padding: 11px 12px;
+  border: 1px solid #dce4ef;
+  border-radius: 7px;
+  outline: none;
+  color: #172b4d;
+  background: #ffffff;
+  font-family: inherit;
+  font-size: 13px;
+}
+
+.product-description textarea {
+  resize: vertical;
+  min-height: 110px;
+}
+
+.product-description textarea:focus,
+.form-field select:focus {
+  border-color: #2875ed;
+  box-shadow: 0 0 0 3px rgba(40, 117, 237, 0.1);
+}
+
+.form-field select {
+  min-height: 43px;
+}
+
+.product-description textarea::placeholder {
+  color: #a0acbc;
+}

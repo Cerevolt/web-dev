@@ -1,0 +1,138 @@
+
+.add-consultant-page {
+  width: 100%;
+}
+
+.consultant-page-heading {
+  margin-bottom: 24px;
+}
+
+.consultant-page-heading h1 {
+  margin: 0 0 7px;
+  color: var(--text-primary, #172b4d);
+  font-size: 25px;
+  font-weight: 700;
+}
+
+.consultant-page-heading p {
+  margin: 0;
+  color: var(--text-secondary, #65758b);
+  font-size: 14px;
+}
+
+.consultant-form {
+  max-width: 950px;
+  padding: 28px;
+  background: #ffffff;
+  border: 1px solid #e3eaf4;
+  border-radius: 12px;
+}
+
+.consultant-form h3 {
+  margin: 0 0 22px;
+  color: #172b4d;
+  font-size: 16px;
+  font-weight: 650;
+}
+
+.consultant-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px 24px;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-field label {
+  color: #34445c;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.form-field input {
+  width: 100%;
+  min-height: 43px;
+  padding: 10px 12px;
+  border: 1px solid #dce4ef;
+  border-radius: 7px;
+  outline: none;
+  color: #172b4d;
+  background: #ffffff;
+  font: inherit;
+  font-size: 13px;
+}
+
+.form-field input:focus {
+  border-color: #2875ed;
+  box-shadow: 0 0 0 3px rgba(40, 117, 237, 0.1);
+}
+
+.form-field input::placeholder {
+  color: #a0acbc;
+}
+
+.form-divider {
+  height: 1px;
+  margin: 28px 0;
+  background: #e8edf4;
+}
+
+.consultant-form-message {
+  margin: 20px 0 0;
+  color: #2875ed;
+  font-size: 13px;
+}
+
+.consultant-form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.consultant-form-actions button {
+  min-height: 42px;
+  padding: 0 20px;
+  border-radius: 7px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.consultant-reset {
+  color: #43536a;
+  background: #ffffff;
+  border: 1px solid #dce4ef;
+}
+
+.consultant-submit {
+  color: #ffffff;
+  background: #2875ed;
+  border: 1px solid #2875ed;
+}
+
+.consultant-submit:hover {
+  background: #1d63d5;
+}
+
+@media (max-width: 650px) {
+  .consultant-form {
+    padding: 20px;
+  }
+
+  .consultant-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .consultant-form-actions {
+    flex-direction: column-reverse;
+  }
+
+  .consultant-form-actions button {
+    width: 100%;
+  }
+}
