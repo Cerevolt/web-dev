@@ -1,0 +1,76 @@
+{
+  "info": {
+    "name": "Cerevolt API Collection",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {"key": "base_url", "value": "http://localhost:8000"},
+    {"key": "access_token", "value": ""},
+    {"key": "refresh_token", "value": ""}
+  ],
+  "item": [
+    {
+      "name": "Accounts",
+      "item": [
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "url": {"raw": "{{base_url}}/accounts/login/", "host": ["{{base_url}}"], "path": ["accounts", "login", ""]},
+            "body": {"mode": "raw", "raw": "{\n  \"email\": \"admin@example.com\",\n  \"password\": \"yourpassword\"\n}"}
+          }
+        },
+        {
+          "name": "Logout",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}, {"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": {"raw": "{{base_url}}/accounts/logout/", "host": ["{{base_url}}"], "path": ["accounts", "logout", ""]},
+            "body": {"mode": "raw", "raw": "{\n  \"refresh\": \"{{refresh_token}}\"\n}"}
+          }
+        },
+        {
+          "name": "Me",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": {"raw": "{{base_url}}/accounts/me/", "host": ["{{base_url}}"], "path": ["accounts", "me", ""]}}
+          }
+        },
+        {
+          "name": "Create User (Admin)",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}, {"key": "Authorization", "value": "Bearer {{access_token}}"}],
+            "url": {"raw": "{{base_url}}/accounts/users/", "host": ["{{base_url}}"], "path": ["accounts", "users", ""]},
+            "body": {"mode": "raw", "raw": "{\n  \"email\": \"newuser@example.com\",\n  \"password\": \"Pass1234!\",\n  \"role\": \"parent\",\n  \"first_name\": \"John\",\n  \"last_name\": \"Doe\"\n}"}
+          }
+        }
+      ]
+    },
+    {
+      "name": "Children",
+      "item": [
+        {"name": "Videos", "request": {"method": "GET", "url": {"raw": "{{base_url}}/children/videos/", "host": ["{{base_url}}"], "path": ["children", "videos", ""]}}},
+        {"name": "Games", "request": {"method": "GET", "url": {"raw": "{{base_url}}/children/games/", "host": ["{{base_url}}"], "path": ["children", "games", ""]}}},
+        {"name": "Rewards", "request": {"method": "GET", "url": {"raw": "{{base_url}}/children/rewards/", "host": ["{{base_url}}"], "path": ["children", "rewards", ""]}}},
+        {"name": "DailyGoals", "request": {"method": "GET", "url": {"raw": "{{base_url}}/children/dailygoals/", "host": ["{{base_url}}"], "path": ["children", "dailygoals", ""]}}}
+      ]
+    },
+    {
+      "name": "Consultant",
+      "item": [
+        {"name": "Assessments", "request": {"method": "GET", "url": {"raw": "{{base_url}}/children/consultant/assessments/", "host": ["{{base_url}}"], "path": ["consultant", "assessments", ""]}}},
+        {"name": "Progress", "request": {"method": "GET", "url": {"raw": "{{base_url}}/consultant/progress/", "host": ["{{base_url}}"], "path": ["consultant", "progress", ""]}}}
+      ]
+    },
+    {
+      "name": "Parents",
+      "item": [
+        {"name": "Feedbacks", "request": {"method": "GET", "url": {"raw": "{{base_url}}/parents/feedbacks/", "host": ["{{base_url}}"], "path": ["parents", "feedbacks", ""]}}},
+        {"name": "Doctor Requests", "request": {"method": "GET", "url": {"raw": "{{base_url}}/parents/doctor-requests/", "host": ["{{base_url}}"], "path": ["parents", "doctor-requests", ""]}}}
+      ]
+    }
+  ]
+}
