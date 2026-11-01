@@ -129,15 +129,23 @@ class AdminPermissionTests(APITestCase):
 
 
     def test_duplicate_email(self):
-        resp = self.client.post('/accounts/login/', {'email': 'admin@test.com', 'password': 'Pass1234!'}, format='json')
+        admin = User.objects.create_superuser(username='admin2@test.com', email='admin2@test.com', password='Pass1234!')
+        Profile.objects.create(user=admin, role='admin', normalized_email='admin2@test.com')
+        existing = User.objects.create_user(username='dup@test.com', email='dup@test.com', password='Pass1234!')
+        Profile.objects.create(user=existing, role='parent', normalized_email='dup@test.com')
+        resp = self.client.post('/accounts/login/', {'email': 'admin2@test.com', 'password': 'Pass1234!'}, format='json')
         self.assertEqual(resp.status_code, 200)
         access = resp.data['access']
         self.client.credentials(HTTP_AUTHORIZATION=f'Bearer {access}')
-        r = self.client.post('/accounts/users/', {'email': 'PARENT@TEST.COM', 'password': 'Pass1234!', 'role': 'child'}, format='json')
+        r = self.client.post('/accounts/users/', {'email': 'DUP@TEST.COM', 'password': 'Pass1234!', 'role': 'child'}, format='json')
         self.assertIn(r.status_code, [400])
 
+
+
     def test_logout_blacklist(self):
-        resp = self.client.post('/accounts/login/', {'email': 'parent@test.com', 'password': 'Pass1234!'}, format='json')
+        parent = User.objects.create_user(username='parent2@test.com', email='parent2@test.com', password='Pass1234!')
+        Profile.objects.create(user=parent, role='parent', normalized_email='parent2@test.com')
+        resp = self.client.post('/accounts/login/', {'email': 'parent2@test.com', 'password': 'Pass1234!'}, format='json')
         self.assertEqual(resp.status_code, 200)
         access = resp.data['access']
         refresh = resp.data['refresh']
@@ -152,4 +160,5 @@ class AdminPermissionTests(APITestCase):
             self.fail('should be blacklisted')
         except TokenError:
             pass
+
 

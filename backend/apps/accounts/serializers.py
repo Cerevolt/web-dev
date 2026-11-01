@@ -30,9 +30,10 @@ class UserCreateSerializer(serializers.Serializer):
         email = value.strip().lower()
         if User.objects.filter(email__iexact=email).exists():
             raise serializers.ValidationError('A user with this email already exists.')
-        if Profile.objects.filter(normalized_email=email).exists():
+        if Profile.objects.filter(normalized_email__iexact=email).exists():
             raise serializers.ValidationError('A user with this email already exists.')
         return email
+
 
     def validate_password(self, value):
         validate_password(value)

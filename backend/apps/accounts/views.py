@@ -60,7 +60,7 @@ def logout_view(request):
     try:
         token = RefreshToken(refresh_token)
         token_user_id = token.get('user_id')
-        if token_user_id != request.user.pk:
+        if token_user_id is not None and int(token_user_id) != int(request.user.pk):
             return Response({'detail': 'Token does not belong to this user.'}, status=status.HTTP_403_FORBIDDEN)
         token.blacklist()
         return Response({'detail': 'Successfully logged out.'}, status=status.HTTP_200_OK)
@@ -68,6 +68,7 @@ def logout_view(request):
         return Response({'detail': 'Invalid or already blacklisted token.'}, status=status.HTTP_400_BAD_REQUEST)
     except Exception:
         return Response({'detail': 'Invalid or already blacklisted token.'}, status=status.HTTP_400_BAD_REQUEST)
+
 
 
 
