@@ -2,6 +2,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import "./ChildSidebar.css";
+import ChildPlantMascot from "./ChildPlantMascot";
 
 const ChildSidebar = () => {
   const links = [
@@ -11,6 +12,7 @@ const ChildSidebar = () => {
     { to: "/child/flashcards", icon: "🃏", label: "Flashcards" },
     { to: "/child/videos", icon: "🎬", label: "Watch & Learn" },
     { to: "/child/rewards", icon: "🏆", label: "My Rewards" },
+    { to: "/child/assessments", icon: "📝", label: "Solve Assessments" },
   ];
 
   return (
@@ -40,7 +42,7 @@ const ChildSidebar = () => {
           </NavLink>
         ))}
       </nav>
-
+      <ChildPlantMascot />
       <div className="child-sidebar-footer">
         <span>🌟</span>
         <p>Every little step counts!</p>

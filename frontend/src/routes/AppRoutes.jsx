@@ -21,6 +21,9 @@ import ChildDashboard from "../pages/children/childdashboard.jsx";
 import DailyGoals from "../pages/children/dailygoals.jsx";
 import PlayGames from "../pages/children/playgames.jsx";
 import Flashcards from "../pages/children/flashcards.jsx";
+import SolveAssessments from "../pages/children/solveassesments.jsx";
+import WatchVideos from "../pages/children/watchvideos.jsx";
+import Reward from "../pages/children/reward.jsx";
 
 function AppRoutes() {
   return (
@@ -45,6 +48,9 @@ function AppRoutes() {
       <Route path="/child/goals" element={<DailyGoals />} />
       <Route path="/child/games" element={<PlayGames />} />
       <Route path="/child/flashcards" element={<Flashcards />} />
+      <Route path="/child/assessments" element={<SolveAssessments />} />
+      <Route path="/child/videos" element={<WatchVideos />} />
+      <Route path="/child/rewards" element={<Reward />} />
 
       {/* 404 Not Found */}
       <Route path="*" element={<NotFound />} />

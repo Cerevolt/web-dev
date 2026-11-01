@@ -1,0 +1,361 @@
+.assessment-page {
+  width: 100%;
+  padding: 30px;
+  color: #26364a;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+/* Header */
+
+.assessment-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 30px 35px;
+  border-radius: 20px;
+  background: #eaf3ff;
+  margin-bottom: 25px;
+}
+
+.assessment-tag {
+  display: inline-block;
+  color: #3978c8;
+  background: #d5e7ff;
+  padding: 7px 13px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.7px;
+}
+
+.assessment-header h1 {
+  font-size: 28px;
+  color: #244c7b;
+  margin: 14px 0 8px;
+}
+
+.assessment-header p {
+  color: #60758e;
+  font-size: 14px;
+  margin: 0;
+  line-height: 1.6;
+}
+
+.assessment-header-emoji {
+  font-size: 75px;
+}
+
+/* Statistics */
+
+.assessment-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-bottom: 35px;
+}
+
+.assessment-stat-card {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 18px;
+  background: #ffffff;
+  border: 1px solid #e8edf4;
+  border-radius: 15px;
+  box-shadow: 0 3px 12px rgba(45, 70, 100, 0.05);
+}
+
+.assessment-stat-card > span {
+  width: 45px;
+  height: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #eef5ff;
+  border-radius: 12px;
+  font-size: 23px;
+}
+
+.assessment-stat-card h3 {
+  margin: 0 0 4px;
+  color: #315f95;
+  font-size: 20px;
+}
+
+.assessment-stat-card p {
+  margin: 0;
+  font-size: 12px;
+  color: #8190a3;
+}
+
+/* Section heading */
+
+.assessment-section-heading {
+  margin-bottom: 18px;
+}
+
+.assessment-section-heading h2 {
+  font-size: 21px;
+  color: #29496e;
+  margin: 0 0 6px;
+}
+
+.assessment-section-heading p {
+  font-size: 13px;
+  color: #8793a3;
+  margin: 0;
+}
+
+/* Filters */
+
+.assessment-filters {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 22px;
+}
+
+.assessment-filters button {
+  padding: 9px 20px;
+  border: 1px solid #dce5f0;
+  background: #ffffff;
+  border-radius: 20px;
+  color: #63758c;
+  font-size: 13px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.assessment-filters button:hover,
+.assessment-filters button.selected {
+  background: #3978c8;
+  color: #ffffff;
+  border-color: #3978c8;
+}
+
+/* Assessment cards */
+
+.assessment-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.assessment-card {
+  padding: 23px;
+  border-radius: 17px;
+  border: 1px solid #e8edf4;
+  background: #ffffff;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.assessment-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 9px 22px rgba(45, 70, 100, 0.09);
+}
+
+.assessment-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.assessment-icon {
+  width: 55px;
+  height: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  border-radius: 15px;
+}
+
+.assessment-level {
+  padding: 6px 12px;
+  border-radius: 15px;
+  background: #eef5ff;
+  color: #4778b2;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.assessment-subject {
+  color: #7b8ba0;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.assessment-card h3 {
+  color: #29496e;
+  font-size: 19px;
+  margin: 7px 0;
+}
+
+.assessment-description {
+  color: #7b8797;
+  font-size: 13px;
+  line-height: 1.6;
+  min-height: 40px;
+  margin: 0 0 17px;
+}
+
+.assessment-details {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+  padding: 13px 0;
+  border-top: 1px solid #edf0f5;
+  color: #718198;
+  font-size: 12px;
+}
+
+.assessment-start-btn {
+  width: 100%;
+  margin-top: 8px;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  background: #3978c8;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.assessment-start-btn:hover {
+  background: #285f9f;
+}
+
+/* Card variations */
+
+.assessment-card.math .assessment-icon {
+  background: #fff1d9;
+}
+
+.assessment-card.english .assessment-icon {
+  background: #f0eaff;
+}
+
+.assessment-card.science .assessment-icon {
+  background: #e4f8ed;
+}
+
+.assessment-card.gk .assessment-icon {
+  background: #e4f2ff;
+}
+
+/* Modal */
+
+.assessment-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background: rgba(25, 42, 63, 0.5);
+}
+
+.assessment-modal {
+  position: relative;
+  width: 100%;
+  max-width: 390px;
+  padding: 32px 25px;
+  border-radius: 20px;
+  background: #ffffff;
+  text-align: center;
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.15);
+}
+
+.assessment-modal-close {
+  position: absolute;
+  top: 13px;
+  right: 15px;
+  border: none;
+  background: transparent;
+  color: #77869a;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.assessment-modal-icon {
+  font-size: 48px;
+}
+
+.assessment-modal h2 {
+  color: #29496e;
+  font-size: 22px;
+  margin: 12px 0 8px;
+}
+
+.assessment-modal > p {
+  color: #78889c;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.assessment-modal-info {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin: 20px 0;
+  color: #61748c;
+  font-size: 12px;
+}
+
+.assessment-modal .assessment-coming-soon {
+  padding: 12px;
+  border-radius: 10px;
+  background: #fff6e5;
+  color: #9a702c;
+}
+
+.assessment-modal-btn {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  background: #3978c8;
+  color: #ffffff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* Responsive */
+
+@media (max-width: 900px) {
+  .assessment-page {
+    padding: 20px;
+  }
+
+  .assessment-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .assessment-header {
+    padding: 22px;
+  }
+
+  .assessment-header h1 {
+    font-size: 22px;
+  }
+
+  .assessment-header-emoji {
+    font-size: 48px;
+  }
+
+  .assessment-stats {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .assessment-filters {
+    flex-wrap: wrap;
+  }
+}
