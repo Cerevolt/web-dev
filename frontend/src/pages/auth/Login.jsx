@@ -1,5 +1,7 @@
+
 import { useState } from "react";
-import "./Login.css";
+import { Link } from "react-router-dom";
+import "./login.css";
 
 function Login() {
   const [formData, setFormData] = useState({
@@ -10,6 +12,7 @@ function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
   const [errors, setErrors] = useState({});
+  const [message, setMessage] = useState("");
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -23,6 +26,8 @@ function Login() {
       ...previous,
       [name]: "",
     }));
+
+    setMessage("");
   };
 
   const validateForm = () => {
@@ -30,7 +35,9 @@ function Login() {
 
     if (!formData.email.trim()) {
       newErrors.email = "Email address is required.";
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+    } else if (
+      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email.trim())
+    ) {
       newErrors.email = "Please enter a valid email address.";
     }
 
@@ -45,25 +52,28 @@ function Login() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    setMessage("");
 
     if (!validateForm()) {
       return;
     }
 
-    // Authentication API integration will be added later.
-    console.log("Login form validated successfully.");
+    setMessage(
+      "Your details are valid. Login authentication will be available after backend integration."
+    );
   };
 
   return (
     <main className="auth-page">
+      {/* Left visual section */}
       <section className="auth-visual">
-        <div className="auth-brand">
-          <div className="brand-symbol">N</div>
-          <span>NeuroCare</span>
-        </div>
+        <Link to="/" className="auth-brand">
+          <div className="brand-symbol">C</div>
+          <span>Cerevolt</span>
+        </Link>
 
         <div className="visual-content">
-          <span className="visual-tag">A better way to grow</span>
+          <span className="visual-tag">A connected approach to growth</span>
 
           <h1>
             Every mind is unique.
@@ -72,18 +82,20 @@ function Login() {
           </h1>
 
           <p>
-            A connected platform bringing families, educators and
-            consultants together to support every child's development.
+            A multi-role neurocognitive platform bringing children,
+            parents, doctors and teachers together through learning,
+            assessment and progress monitoring.
           </p>
 
           <div className="visual-illustration" aria-hidden="true">
             <div className="illustration-circle circle-one"></div>
             <div className="illustration-circle circle-two"></div>
+
             <div className="illustration-card">
               <div className="illustration-icon">✦</div>
               <span>Learn</span>
               <span>Grow</span>
-              <span>Thrive</span>
+              <span>Connect</span>
             </div>
           </div>
         </div>
@@ -93,18 +105,21 @@ function Login() {
         </div>
       </section>
 
+      {/* Right login section */}
       <section className="auth-form-section">
         <div className="auth-form-container">
-          <div className="mobile-brand">
-            <div className="brand-symbol">N</div>
-            <span>NeuroCare</span>
-          </div>
+          <Link to="/" className="mobile-brand">
+            <div className="brand-symbol">C</div>
+            <span>Cerevolt</span>
+          </Link>
 
           <div className="auth-heading">
             <span className="auth-eyebrow">WELCOME BACK</span>
+
             <h2>Sign in to your account</h2>
+
             <p>
-              Enter your details below to access your dashboard.
+              Enter your registered details to access your Cerevolt account.
             </p>
           </div>
 
@@ -135,9 +150,9 @@ function Login() {
               <div className="password-label-row">
                 <label htmlFor="password">Password</label>
 
-                <a href="/forgot-password">
+                <Link to="/forgot-password">
                   Forgot password?
-                </a>
+                </Link>
               </div>
 
               <div className="password-input-wrapper">
@@ -181,19 +196,20 @@ function Login() {
               <span>Remember me</span>
             </label>
 
+            {message && (
+              <p className="auth-status-message" role="status">
+                {message}
+              </p>
+            )}
+
             <button type="submit" className="auth-submit-button">
               Sign In
               <span aria-hidden="true">→</span>
             </button>
           </form>
 
-          <p className="auth-switch">
-            Don't have an account?{" "}
-            <a href="/register">Create an account</a>
-          </p>
-
           <p className="auth-legal">
-            By continuing, you agree to our Terms of Service and Privacy Policy.
+            Your account access is managed through your assigned Cerevolt role.
           </p>
         </div>
       </section>
