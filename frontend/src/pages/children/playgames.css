@@ -1,0 +1,268 @@
+.play-games-page {
+  flex: 1;
+  min-width: 0;
+  padding: 32px;
+  background: #f6f9ff;
+  font-family: inherit;
+  color: #263653;
+}
+
+.games-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 28px;
+}
+
+.games-eyebrow {
+  color: #5586d2;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  margin: 0 0 8px;
+}
+
+.games-header h1 {
+  font-size: 32px;
+  margin: 0 0 8px;
+  color: #253858;
+}
+
+.games-header h1 span {
+  font-size: 28px;
+}
+
+.games-header > div:first-child > p:last-child {
+  color: #7b8ba5;
+  margin: 0;
+  font-size: 15px;
+}
+
+.games-header-art {
+  width: 76px;
+  height: 76px;
+  display: grid;
+  place-items: center;
+  background: #e4efff;
+  border-radius: 24px;
+  font-size: 40px;
+}
+
+.games-feature {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 28px 34px;
+  border-radius: 22px;
+  background: #dceaff;
+  margin-bottom: 34px;
+  overflow: hidden;
+}
+
+.feature-label {
+  display: inline-block;
+  color: #3973c5;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+}
+
+.games-feature h2 {
+  font-size: 25px;
+  color: #244d83;
+  margin: 0 0 8px;
+}
+
+.games-feature p {
+  color: #58769d;
+  font-size: 14px;
+  margin: 0;
+  max-width: 450px;
+  line-height: 1.6;
+}
+
+.feature-emoji {
+  font-size: 65px;
+  padding: 0 25px;
+}
+
+.games-section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.games-section-heading h2 {
+  color: #293b59;
+  font-size: 21px;
+  margin: 0 0 5px;
+}
+
+.games-section-heading p {
+  color: #8a98ad;
+  font-size: 13px;
+  margin: 0;
+}
+
+.games-count {
+  background: #e5edff;
+  color: #4b77ba;
+  border-radius: 20px;
+  padding: 7px 14px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.games-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.game-card {
+  padding: 22px;
+  border-radius: 20px;
+  min-height: 245px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.game-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(53, 78, 120, 0.09);
+}
+
+.word-game {
+  background: #e6f0ff;
+}
+
+.math-game {
+  background: #f0eaff;
+}
+
+.memory-game {
+  background: #fff0e5;
+}
+
+.science-game {
+  background: #e5f7ee;
+}
+
+.game-card-top {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.game-tag {
+  background: rgba(255, 255, 255, 0.75);
+  padding: 6px 11px;
+  border-radius: 20px;
+  font-size: 10px;
+  font-weight: 700;
+  color: #64758f;
+}
+
+.game-number {
+  font-size: 12px;
+  font-weight: 800;
+  color: #91a0b5;
+}
+
+.game-emoji {
+  font-size: 39px;
+  margin: 17px 0 10px;
+}
+
+.game-card h3 {
+  font-size: 18px;
+  color: #30415e;
+  margin: 0 0 6px;
+}
+
+.game-card > p {
+  color: #77869d;
+  font-size: 13px;
+  line-height: 1.5;
+  margin: 0 0 18px;
+}
+
+.play-game-button {
+  margin-top: auto;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 16px;
+  background: #397bd3;
+  color: white;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.play-game-button:hover {
+  background: #2865b7;
+}
+
+.play-game-button span {
+  margin-left: 8px;
+  font-size: 15px;
+}
+
+.math-game .play-game-button {
+  background: #8664cc;
+}
+
+.memory-game .play-game-button {
+  background: #df925d;
+}
+
+.science-game .play-game-button {
+  background: #43a879;
+}
+
+.games-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 30px;
+  color: #8292aa;
+  font-size: 13px;
+}
+
+.games-footer p {
+  margin: 0;
+}
+
+.games-footer span {
+  font-size: 17px;
+}
+
+@media (max-width: 768px) {
+  .play-games-page {
+    padding: 22px 16px;
+  }
+
+  .games-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .games-feature {
+    padding: 22px;
+  }
+
+  .feature-emoji {
+    font-size: 45px;
+    padding: 0 5px;
+  }
+
+  .games-header h1 {
+    font-size: 27px;
+  }
+}

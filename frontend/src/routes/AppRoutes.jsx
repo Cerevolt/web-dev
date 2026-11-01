@@ -17,6 +17,11 @@ import NotFound from "../pages/common/notfound";
 import Login from "../pages/auth/Login";
 import ForgetPassword from "../pages/auth/ForgetPassword";
 
+import ChildDashboard from "../pages/children/childdashboard.jsx";
+import DailyGoals from "../pages/children/dailygoals.jsx";
+import PlayGames from "../pages/children/playgames.jsx";
+import Flashcards from "../pages/children/flashcards.jsx";
+
 function AppRoutes() {
   return (
     <Routes>
@@ -34,6 +39,12 @@ function AppRoutes() {
       <Route path="/admin/manage-games" element={<ManageGame />} />
       <Route path="/admin/manage-content" element={<ManageContent />} />
       <Route path="/admin/settings" element={<Settings />} />
+
+      {/* Children's pages */}
+      <Route path="/child/dashboard" element={<ChildDashboard />} />
+      <Route path="/child/goals" element={<DailyGoals />} />
+      <Route path="/child/games" element={<PlayGames />} />
+      <Route path="/child/flashcards" element={<Flashcards />} />
 
       {/* 404 Not Found */}
       <Route path="*" element={<NotFound />} />

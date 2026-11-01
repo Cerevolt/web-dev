@@ -1,0 +1,264 @@
+.flashcards-page {
+  flex: 1;
+  min-width: 0;
+  padding: 32px;
+  background: #f6f9ff;
+  color: #263653;
+}
+
+.flashcards-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 28px;
+}
+
+.flashcards-eyebrow {
+  color: #5586d2;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  margin: 0 0 8px;
+}
+
+.flashcards-header h1 {
+  font-size: 32px;
+  color: #253858;
+  margin: 0 0 8px;
+}
+
+.flashcards-header > div:first-child > p:last-child {
+  color: #7b8ba5;
+  font-size: 14px;
+  margin: 0;
+}
+
+.flashcards-header-icon {
+  width: 76px;
+  height: 76px;
+  display: grid;
+  place-items: center;
+  background: #e4efff;
+  border-radius: 24px;
+  font-size: 39px;
+}
+
+.flashcards-banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 27px 34px;
+  border-radius: 22px;
+  background: #e7eaff;
+  margin-bottom: 34px;
+}
+
+.flashcards-banner span {
+  color: #7563c1;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.flashcards-banner h2 {
+  color: #51468e;
+  font-size: 24px;
+  margin: 10px 0 8px;
+}
+
+.flashcards-banner p {
+  color: #7774a4;
+  font-size: 14px;
+  margin: 0;
+}
+
+.flashcards-banner-emoji {
+  font-size: 65px;
+  padding: 0 25px;
+}
+
+.flashcards-section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.flashcards-section-heading h2 {
+  font-size: 21px;
+  color: #293b59;
+  margin: 0 0 5px;
+}
+
+.flashcards-section-heading p {
+  font-size: 13px;
+  color: #8a98ad;
+  margin: 0;
+}
+
+.flashcards-counter {
+  background: #e5edff;
+  color: #4b77ba;
+  border-radius: 20px;
+  padding: 8px 15px;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.flashcard-container {
+  max-width: 620px;
+  margin: 0 auto;
+}
+
+.flashcard {
+  min-height: 310px;
+  border-radius: 24px;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.25s ease, background 0.25s ease;
+  box-shadow: 0 8px 22px rgba(58, 75, 115, 0.07);
+}
+
+.flashcard:hover {
+  transform: translateY(-3px);
+}
+
+.science-card {
+  background: #e5f0ff;
+}
+
+.math-card {
+  background: #f0eaff;
+}
+
+.english-card {
+  background: #fff0e7;
+}
+
+.nature-card {
+  background: #e4f6eb;
+}
+
+.flashcard-category {
+  align-self: flex-end;
+  background: rgba(255, 255, 255, 0.75);
+  color: #65748d;
+  border-radius: 20px;
+  padding: 7px 13px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.flashcard-emoji {
+  font-size: 48px;
+  margin: 12px 0;
+}
+
+.flashcard-label {
+  color: #6282b4;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.flashcard h3 {
+  max-width: 460px;
+  color: #30415e;
+  font-size: 24px;
+  line-height: 1.4;
+  margin: 12px 0;
+}
+
+.flashcard-hint {
+  color: #8290a7;
+  font-size: 12px;
+  margin: 8px 0 0;
+}
+
+.flashcard-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 22px;
+}
+
+.flashcard-controls button {
+  border: none;
+  border-radius: 11px;
+  padding: 12px 17px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.flashcard-nav-button {
+  background: #e5edff;
+  color: #426da9;
+}
+
+.flashcard-nav-button:hover {
+  background: #d5e4ff;
+}
+
+.flashcard-flip-button {
+  background: #397bd3;
+  color: white;
+}
+
+.flashcard-flip-button:hover {
+  background: #2865b7;
+}
+
+.flashcards-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 34px;
+  color: #8292aa;
+  font-size: 13px;
+}
+
+.flashcards-footer p {
+  margin: 0;
+}
+
+.flashcards-footer span {
+  font-size: 17px;
+}
+
+@media (max-width: 768px) {
+  .flashcards-page {
+    padding: 22px 16px;
+  }
+
+  .flashcards-header h1 {
+    font-size: 26px;
+  }
+
+  .flashcards-banner {
+    padding: 22px;
+  }
+
+  .flashcards-banner-emoji {
+    font-size: 45px;
+    padding: 0 5px;
+  }
+
+  .flashcard {
+    min-height: 280px;
+    padding: 20px;
+  }
+
+  .flashcard h3 {
+    font-size: 20px;
+  }
+}
