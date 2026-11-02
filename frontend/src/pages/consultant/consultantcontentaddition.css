@@ -1,0 +1,150 @@
+.consultant-content-page {
+  width: 100%;
+  min-height: 100vh;
+  padding: 30px;
+  box-sizing: border-box;
+  background: #f7f9fc;
+  color: #243247;
+}
+
+.consultant-content-header {
+  margin-bottom: 28px;
+}
+
+.consultant-content-header h1 {
+  margin: 0 0 8px;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.consultant-content-header p {
+  margin: 0;
+  color: #718096;
+  font-size: 14px;
+}
+
+.content-form-card {
+  max-width: 850px;
+  padding: 28px;
+  background: #fff;
+  border: 1px solid #e7edf5;
+  border-radius: 10px;
+}
+
+.content-form-heading {
+  margin-bottom: 25px;
+}
+
+.content-form-heading h2 {
+  margin: 0 0 7px;
+  font-size: 19px;
+  color: #243247;
+}
+
+.content-form-heading p {
+  margin: 0;
+  color: #718096;
+  font-size: 13px;
+}
+
+.consultant-content-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.content-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.content-form-group label {
+  color: #334155;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.content-form-group input,
+.content-form-group select,
+.content-form-group textarea {
+  width: 100%;
+  padding: 12px 13px;
+  box-sizing: border-box;
+  border: 1px solid #d8e0eb;
+  border-radius: 7px;
+  outline: none;
+  background: #fff;
+  color: #334155;
+  font-family: inherit;
+  font-size: 13px;
+}
+
+.content-form-group input:focus,
+.content-form-group select:focus,
+.content-form-group textarea:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
+}
+
+.content-form-group textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.content-form-row {
+  display: flex;
+  gap: 20px;
+}
+
+.content-form-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.content-submit-btn {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 7px;
+  background: #2563eb;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.content-submit-btn:hover {
+  background: #1d4ed8;
+}
+
+.content-success-message {
+  margin: 0;
+  padding: 12px;
+  border-radius: 7px;
+  background: #dcfce7;
+  color: #15803d;
+  font-size: 13px;
+}
+
+@media (max-width: 650px) {
+  .consultant-content-page {
+    padding: 20px;
+  }
+
+  .content-form-card {
+    padding: 20px;
+  }
+
+  .content-form-row {
+    flex-direction: column;
+  }
+
+  .content-form-actions {
+    justify-content: stretch;
+  }
+
+  .content-submit-btn {
+    width: 100%;
+  }
+}

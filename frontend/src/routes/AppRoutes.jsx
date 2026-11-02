@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 
@@ -29,6 +30,23 @@ import ChildProgressReport from "../pages/parents/childprogressreport.jsx";
 import DoctorSupport from "../pages/parents/doctorsupport.jsx";
 import FeedbackForm from "../pages/parents/feedbackform.jsx";
 import ParentChatbot from "../pages/parents/parentchatbot.jsx";
+
+import ConsultantDashboard from "../pages/consultant/consultantdashboard.jsx";
+import ConsultantAssessment from "../pages/consultant/consultantassesment.jsx";
+import ConsultantContentAddition from "../pages/consultant/consultantcontentaddition.jsx";
+import ConsultantProgressReport from "../pages/consultant/consultantprogressreport.jsx";
+import ConsultantSidebar from "../components/ConsultantSidebar.jsx";
+
+function ConsultantLayout({ children }) {
+  return (
+    <div style={{ display: "flex", minHeight: "100vh" }}>
+      <ConsultantSidebar />
+      <div style={{ flex: 1, minWidth: 0 }}>
+        {children}
+      </div>
+    </div>
+  );
+}
 
 function AppRoutes() {
   return (
@@ -63,7 +81,13 @@ function AppRoutes() {
       <Route path="/parent/doctor-support" element={<DoctorSupport />} />
       <Route path="/parent/feedback" element={<FeedbackForm />} />
       <Route path="/parent/assistant" element={<ParentChatbot />} />
-      
+
+      {/* Consultant pages */}
+      <Route path="/consultant/dashboard" element={<ConsultantLayout><ConsultantDashboard /></ConsultantLayout>} />
+      <Route path="/consultant/assessment" element={<ConsultantLayout><ConsultantAssessment /></ConsultantLayout>} />
+      <Route path="/consultant/content-addition" element={<ConsultantLayout><ConsultantContentAddition /></ConsultantLayout>} />
+      <Route path="/consultant/progress-report" element={<ConsultantLayout><ConsultantProgressReport /></ConsultantLayout>} />
+
       {/* 404 Not Found */}
       <Route path="*" element={<NotFound />} />
     </Routes>

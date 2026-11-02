@@ -1,0 +1,177 @@
+
+.consultant-sidebar {
+  width: 250px;
+  min-width: 250px;
+  min-height: 100vh;
+  background: #172b4d;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  padding: 28px 18px 20px;
+  box-sizing: border-box;
+}
+
+/* Branding */
+.consultant-sidebar-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 25px 24px 35px;
+}
+
+.consultant-brand-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.consultant-brand-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: #dceafe;
+  color: #172b4d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: 800;
+}
+
+.consultant-sidebar-brand h2 {
+  margin: 0;
+  color: #ffffff;
+  font-size: 21px;
+  font-weight: 700;
+}
+
+.consultant-sidebar-brand > span {
+  color: #c7d6eb;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* Navigation */
+.consultant-sidebar-menu {
+  flex: 1;
+  padding-top: 28px;
+}
+
+.consultant-menu-heading {
+  margin: 0 12px 14px;
+  color: #91a6c3;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+}
+
+.consultant-sidebar-menu nav {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.consultant-nav-link {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding: 13px 14px;
+  border-radius: 9px;
+  color: #c6d2e2;
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.consultant-nav-link:hover {
+  background: #263e63;
+  color: #ffffff;
+}
+
+.consultant-nav-link.active {
+  background: #e4edfa;
+  color: #172b4d;
+  font-weight: 700;
+}
+
+.consultant-nav-icon {
+  width: 20px;
+  text-align: center;
+  font-size: 18px;
+}
+
+/* Profile Footer */
+.consultant-sidebar-footer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 12px;
+  margin-top: auto;
+  background: #233b60;
+  border-radius: 12px;
+}
+
+.consultant-user-avatar {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #e4edfa;
+  color: #172b4d;
+  font-weight: 700;
+}
+
+.consultant-sidebar-footer h4 {
+  margin: 0 0 4px;
+  color: #ffffff;
+  font-size: 13px;
+}
+
+.consultant-sidebar-footer p {
+  margin: 0;
+  color: #d5e2f5;
+  font-size: 11px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .consultant-sidebar {
+    width: 100%;
+    min-width: 0;
+    min-height: auto;
+    padding: 16px;
+  }
+
+  .consultant-sidebar-brand {
+    padding: 10px 10px 16px;
+  }
+
+  .consultant-sidebar-menu {
+    padding-top: 15px;
+  }
+
+  .consultant-sidebar-menu nav {
+    flex-direction: row;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: 5px;
+  }
+
+  .consultant-menu-heading {
+    display: none;
+  }
+
+  .consultant-nav-link {
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .consultant-sidebar-footer {
+    display: none;
+  }
+}
