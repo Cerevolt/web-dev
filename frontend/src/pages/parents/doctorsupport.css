@@ -1,0 +1,248 @@
+
+.doctor-support-main {
+  background: #f5f7fb;
+}
+
+.doctor-support-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 32px 36px;
+  margin-bottom: 32px;
+  background: #eaf2ff;
+  border: 1px solid #dce8fb;
+  border-radius: 16px;
+}
+
+.doctor-support-banner span {
+  color: #3974c6;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+}
+
+.doctor-support-banner h2 {
+  margin: 10px 0;
+  color: #18345b;
+  font-size: 27px;
+}
+
+.doctor-support-banner p {
+  max-width: 570px;
+  margin: 0;
+  color: #536982;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.doctor-banner-icon {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 90px;
+  height: 90px;
+  border-radius: 22px;
+  background: #d5e5ff;
+  color: #2864b5;
+  font-size: 43px;
+}
+
+.doctor-support-section {
+  margin-bottom: 32px;
+}
+
+.doctor-section-heading {
+  margin-bottom: 18px;
+}
+
+.doctor-section-heading h2 {
+  margin: 0 0 7px;
+  color: #20344f;
+  font-size: 21px;
+}
+
+.doctor-section-heading p {
+  margin: 0;
+  color: #77869a;
+  font-size: 13px;
+}
+
+.doctor-service-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.doctor-service-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-height: 235px;
+  padding: 24px;
+  background: #ffffff;
+  border: 1px solid #e5eaf1;
+  border-radius: 14px;
+}
+
+.doctor-service-icon {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  margin-bottom: 17px;
+  border-radius: 12px;
+  font-size: 23px;
+  font-weight: 700;
+}
+
+.doctor-service-icon.blue {
+  color: #3476c8;
+  background: #e8f1ff;
+}
+
+.doctor-service-icon.green {
+  color: #26946d;
+  background: #e5f6ef;
+}
+
+.doctor-service-icon.orange {
+  color: #c47b2b;
+  background: #fff2df;
+}
+
+.doctor-service-card h3 {
+  margin: 0 0 9px;
+  color: #263b57;
+  font-size: 16px;
+}
+
+.doctor-service-card p {
+  margin: 0 0 20px;
+  color: #78869a;
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+.doctor-service-button {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: auto;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: #3476c8;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.doctor-service-button:hover {
+  color: #1d559e;
+}
+
+.doctor-support-bottom {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 18px;
+  margin-bottom: 30px;
+}
+
+.doctor-info-panel,
+.doctor-emergency-panel {
+  padding: 24px;
+  background: #ffffff;
+  border: 1px solid #e5eaf1;
+  border-radius: 14px;
+}
+
+.doctor-info-panel h3,
+.doctor-emergency-panel h3 {
+  margin: 0 0 10px;
+  color: #263b57;
+  font-size: 16px;
+}
+
+.doctor-info-panel > p,
+.doctor-emergency-panel p {
+  margin: 0;
+  color: #78869a;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.doctor-info-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  margin-top: 18px;
+  padding: 12px;
+  border-radius: 9px;
+  background: #f0f5fc;
+  color: #536982;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.doctor-info-note span {
+  color: #3476c8;
+  font-weight: 800;
+}
+
+.doctor-emergency-panel {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  background: #fffaf5;
+  border-color: #f4e6d7;
+}
+
+.doctor-emergency-icon {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #fff0df;
+  color: #c47b2b;
+  font-size: 19px;
+  font-weight: 800;
+}
+
+@media (max-width: 1000px) {
+  .doctor-service-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .doctor-support-bottom {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 650px) {
+  .doctor-support-banner {
+    padding: 24px;
+  }
+
+  .doctor-support-banner h2 {
+    font-size: 22px;
+  }
+
+  .doctor-banner-icon {
+    width: 60px;
+    height: 60px;
+    font-size: 30px;
+  }
+
+  .doctor-service-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 420px) {
+  .doctor-banner-icon {
+    display: none;
+  }
+}

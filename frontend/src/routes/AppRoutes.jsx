@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 
@@ -24,6 +23,12 @@ import Flashcards from "../pages/children/flashcards.jsx";
 import SolveAssessments from "../pages/children/solveassesments.jsx";
 import WatchVideos from "../pages/children/watchvideos.jsx";
 import Reward from "../pages/children/reward.jsx";
+
+import ParentDashboard from "../pages/parents/parentdashboard.jsx";
+import ChildProgressReport from "../pages/parents/childprogressreport.jsx";
+import DoctorSupport from "../pages/parents/doctorsupport.jsx";
+import FeedbackForm from "../pages/parents/feedbackform.jsx";
+import ParentChatbot from "../pages/parents/parentchatbot.jsx";
 
 function AppRoutes() {
   return (
@@ -52,6 +57,13 @@ function AppRoutes() {
       <Route path="/child/videos" element={<WatchVideos />} />
       <Route path="/child/rewards" element={<Reward />} />
 
+      {/* Parents' pages */}
+      <Route path="/parent/dashboard" element={<ParentDashboard />} />
+      <Route path="/parent/progress" element={<ChildProgressReport />} />
+      <Route path="/parent/doctor-support" element={<DoctorSupport />} />
+      <Route path="/parent/feedback" element={<FeedbackForm />} />
+      <Route path="/parent/assistant" element={<ParentChatbot />} />
+      
       {/* 404 Not Found */}
       <Route path="*" element={<NotFound />} />
     </Routes>
