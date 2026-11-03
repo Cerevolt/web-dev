@@ -37,10 +37,28 @@ import ConsultantContentAddition from "../pages/consultant/consultantcontentaddi
 import ConsultantProgressReport from "../pages/consultant/consultantprogressreport.jsx";
 import ConsultantSidebar from "../components/ConsultantSidebar.jsx";
 
+import SchoolDashboard from "../pages/school/schooldashboard.jsx";
+import SchoolSidebar from "../components/SchoolSidebar.jsx";
+import SchoolAssessment from "../pages/school/schoolassesment.jsx";
+import SchoolContentAddition from "../pages/school/schoolcontentaddition.jsx";
+import StudentProgress from "../pages/school/studentprogress.jsx";
+import BehaviourMonitoring from "../pages/school/behaviourmonitoring.jsx";
+
 function ConsultantLayout({ children }) {
   return (
     <div style={{ display: "flex", minHeight: "100vh" }}>
       <ConsultantSidebar />
+      <div style={{ flex: 1, minWidth: 0 }}>
+        {children}
+      </div>
+    </div>
+  );
+}
+
+function SchoolLayout({ children }) {
+  return (
+    <div style={{ display: "flex", minHeight: "100vh" }}>
+      <SchoolSidebar />
       <div style={{ flex: 1, minWidth: 0 }}>
         {children}
       </div>
@@ -87,6 +105,13 @@ function AppRoutes() {
       <Route path="/consultant/assessment" element={<ConsultantLayout><ConsultantAssessment /></ConsultantLayout>} />
       <Route path="/consultant/content-addition" element={<ConsultantLayout><ConsultantContentAddition /></ConsultantLayout>} />
       <Route path="/consultant/progress-report" element={<ConsultantLayout><ConsultantProgressReport /></ConsultantLayout>} />
+
+      {/* School pages */}
+      <Route path="/school/dashboard" element={<SchoolLayout><SchoolDashboard /></SchoolLayout>} />
+      <Route path="/school/assessment" element={<SchoolLayout><SchoolAssessment /></SchoolLayout>} />
+      <Route path="/school/content-addition" element={<SchoolLayout><SchoolContentAddition /></SchoolLayout>} />
+      <Route path="/school/student-progress" element={<SchoolLayout><StudentProgress /></SchoolLayout>} />
+      <Route path="/school/behaviour-monitoring" element={<SchoolLayout><BehaviourMonitoring /></SchoolLayout>} />
 
       {/* 404 Not Found */}
       <Route path="*" element={<NotFound />} />
