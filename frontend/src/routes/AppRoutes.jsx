@@ -1,6 +1,9 @@
 
 import React from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
+
+import PrivateRoute from "./PrivateRoute";
+import RoleRoute from "./RoleRoute";
 
 import AdminDashboard from "../pages/admin/admindashboard";
 import AddConsultant from "../pages/admin/addconsultanat";
@@ -66,6 +69,15 @@ function SchoolLayout({ children }) {
   );
 }
 
+function Unauthorized() {
+  return (
+    <div style={{ padding: "40px", textAlign: "center" }}>
+      <h2>Access Denied</h2>
+      <p>You do not have permission to access this page.</p>
+    </div>
+  );
+}
+
 function AppRoutes() {
   return (
     <Routes>
@@ -74,44 +86,60 @@ function AppRoutes() {
       <Route path="/about" element={<About />} />
       <Route path="/login" element={<Login />} />
       <Route path="/forgot-password" element={<ForgetPassword />} />
+      <Route path="/unauthorized" element={<Unauthorized />} />
 
-      {/* Admin pages */}
-      <Route path="/admin/dashboard" element={<AdminDashboard />} />
-      <Route path="/admin/add-doctor" element={<AddConsultant />} />
-      <Route path="/admin/add-product" element={<AddProduct />} />
-      <Route path="/admin/reports" element={<AdminReport />} />
-      <Route path="/admin/manage-games" element={<ManageGame />} />
-      <Route path="/admin/manage-content" element={<ManageContent />} />
-      <Route path="/admin/settings" element={<Settings />} />
+      {/* Authenticated routes */}
+      <Route element={<PrivateRoute />}>
+        
+        {/* Admin pages */}
+        <Route element={<RoleRoute allowedRoles={["admin"]} />}>
+          <Route path="/admin/dashboard" element={<AdminDashboard />} />
+          <Route path="/admin/add-doctor" element={<AddConsultant />} />
+          <Route path="/admin/add-product" element={<AddProduct />} />
+          <Route path="/admin/reports" element={<AdminReport />} />
+          <Route path="/admin/manage-games" element={<ManageGame />} />
+          <Route path="/admin/manage-content" element={<ManageContent />} />
+          <Route path="/admin/settings" element={<Settings />} />
+        </Route>
 
-      {/* Children's pages */}
-      <Route path="/child/dashboard" element={<ChildDashboard />} />
-      <Route path="/child/goals" element={<DailyGoals />} />
-      <Route path="/child/games" element={<PlayGames />} />
-      <Route path="/child/flashcards" element={<Flashcards />} />
-      <Route path="/child/assessments" element={<SolveAssessments />} />
-      <Route path="/child/videos" element={<WatchVideos />} />
-      <Route path="/child/rewards" element={<Reward />} />
+        {/* Child pages */}
+        <Route element={<RoleRoute allowedRoles={["child"]} />}>
+          <Route path="/child/dashboard" element={<ChildDashboard />} />
+          <Route path="/child/goals" element={<DailyGoals />} />
+          <Route path="/child/games" element={<PlayGames />} />
+          <Route path="/child/flashcards" element={<Flashcards />} />
+          <Route path="/child/assessments" element={<SolveAssessments />} />
+          <Route path="/child/videos" element={<WatchVideos />} />
+          <Route path="/child/rewards" element={<Reward />} />
+        </Route>
 
-      {/* Parents' pages */}
-      <Route path="/parent/dashboard" element={<ParentDashboard />} />
-      <Route path="/parent/progress" element={<ChildProgressReport />} />
-      <Route path="/parent/doctor-support" element={<DoctorSupport />} />
-      <Route path="/parent/feedback" element={<FeedbackForm />} />
-      <Route path="/parent/assistant" element={<ParentChatbot />} />
+        {/* Parent pages */}
+        <Route element={<RoleRoute allowedRoles={["parent"]} />}>
+          <Route path="/parent/dashboard" element={<ParentDashboard />} />
+          <Route path="/parent/progress" element={<ChildProgressReport />} />
+          <Route path="/parent/doctor-support" element={<DoctorSupport />} />
+          <Route path="/parent/feedback" element={<FeedbackForm />} />
+          <Route path="/parent/assistant" element={<ParentChatbot />} />
+        </Route>
 
-      {/* Consultant pages */}
-      <Route path="/consultant/dashboard" element={<ConsultantLayout><ConsultantDashboard /></ConsultantLayout>} />
-      <Route path="/consultant/assessment" element={<ConsultantLayout><ConsultantAssessment /></ConsultantLayout>} />
-      <Route path="/consultant/content-addition" element={<ConsultantLayout><ConsultantContentAddition /></ConsultantLayout>} />
-      <Route path="/consultant/progress-report" element={<ConsultantLayout><ConsultantProgressReport /></ConsultantLayout>} />
+        {/* Consultant pages */}
+        <Route element={<RoleRoute allowedRoles={["consultant"]} />}>
+          <Route path="/consultant/dashboard" element={<ConsultantLayout><ConsultantDashboard /></ConsultantLayout>} />
+          <Route path="/consultant/assessment" element={<ConsultantLayout><ConsultantAssessment /></ConsultantLayout>} />
+          <Route path="/consultant/content-addition" element={<ConsultantLayout><ConsultantContentAddition /></ConsultantLayout>} />
+          <Route path="/consultant/progress-report" element={<ConsultantLayout><ConsultantProgressReport /></ConsultantLayout>} />
+        </Route>
 
-      {/* School pages */}
-      <Route path="/school/dashboard" element={<SchoolLayout><SchoolDashboard /></SchoolLayout>} />
-      <Route path="/school/assessment" element={<SchoolLayout><SchoolAssessment /></SchoolLayout>} />
-      <Route path="/school/content-addition" element={<SchoolLayout><SchoolContentAddition /></SchoolLayout>} />
-      <Route path="/school/student-progress" element={<SchoolLayout><StudentProgress /></SchoolLayout>} />
-      <Route path="/school/behaviour-monitoring" element={<SchoolLayout><BehaviourMonitoring /></SchoolLayout>} />
+        {/* School pages */}
+        <Route element={<RoleRoute allowedRoles={["school"]} />}>
+          <Route path="/school/dashboard" element={<SchoolLayout><SchoolDashboard /></SchoolLayout>} />
+          <Route path="/school/assessment" element={<SchoolLayout><SchoolAssessment /></SchoolLayout>} />
+          <Route path="/school/content-addition" element={<SchoolLayout><SchoolContentAddition /></SchoolLayout>} />
+          <Route path="/school/student-progress" element={<SchoolLayout><StudentProgress /></SchoolLayout>} />
+          <Route path="/school/behaviour-monitoring" element={<SchoolLayout><BehaviourMonitoring /></SchoolLayout>} />
+        </Route>
+
+      </Route>
 
       {/* 404 Not Found */}
       <Route path="*" element={<NotFound />} />

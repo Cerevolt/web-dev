@@ -1,0 +1,53 @@
+.performance-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.performance-status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.performance-good {
+  color: #15803d;
+  background-color: #dcfce7;
+}
+
+.performance-good .performance-status-dot {
+  background-color: #15803d;
+}
+
+.performance-average {
+  color: #a16207;
+  background-color: #fef9c3;
+}
+
+.performance-average .performance-status-dot {
+  background-color: #ca8a04;
+}
+
+.performance-low {
+  color: #b91c1c;
+  background-color: #fee2e2;
+}
+
+.performance-low .performance-status-dot {
+  background-color: #dc2626;
+}
+
+.performance-neutral {
+  color: #64748b;
+  background-color: #f1f5f9;
+}
+
+.performance-neutral .performance-status-dot {
+  background-color: #94a3b8;
+}
