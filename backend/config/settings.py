@@ -24,6 +24,7 @@ INSTALLED_APPS = [
     'apps.parents',
     'apps.consultant',
     'apps.adminpanel',
+    'apps.school',
 ]
 
 
