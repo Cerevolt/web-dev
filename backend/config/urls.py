@@ -19,6 +19,9 @@ urlpatterns = [
 
     path('reports/', include('apps.reports.urls')),
 
+    path('chatbot/', include('apps.chatbot.urls')),
+
 ]
+
 
 
