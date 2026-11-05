@@ -23,6 +23,7 @@ INSTALLED_APPS = [
     'apps.children',
     'apps.parents',
     'apps.consultant',
+    'apps.adminpanel',
 ]
 
 

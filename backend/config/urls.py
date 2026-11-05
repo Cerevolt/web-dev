@@ -13,4 +13,6 @@ urlpatterns = [
 
     path('parents/', include('apps.parents.urls')),
 
+    path('adminpanel/', include('apps.adminpanel.urls')),
+
 ]
