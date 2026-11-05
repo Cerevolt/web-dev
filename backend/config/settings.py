@@ -23,6 +23,10 @@ INSTALLED_APPS = [
     'apps.children',
     'apps.parents',
     'apps.consultant',
+    'apps.adminpanel',
+    'apps.school',
+    'apps.reports',
+    'apps.chatbot',
 ]
 
 
@@ -99,6 +103,13 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# Gemini LLM Configuration
+import os as _os
+GEMINI_API_KEY = _os.environ.get('GEMINI_API_KEY')
+GEMINI_MODEL_NAME = _os.environ.get('GEMINI_MODEL_NAME', 'gemini-2.5-flash')
+GEMINI_CONFIGURED = bool(GEMINI_API_KEY)
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (

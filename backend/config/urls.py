@@ -13,4 +13,15 @@ urlpatterns = [
 
     path('parents/', include('apps.parents.urls')),
 
+    path('adminpanel/', include('apps.adminpanel.urls')),
+
+    path('school/', include('apps.school.urls')),
+
+    path('reports/', include('apps.reports.urls')),
+
+    path('chatbot/', include('apps.chatbot.urls')),
+
 ]
+
+
+
