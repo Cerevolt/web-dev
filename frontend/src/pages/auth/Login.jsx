@@ -1,9 +1,15 @@
 
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import { useAuth } from "../../context/authContext";
+import authService from "../../services/authservice";
 import "./login.css";
 
 function Login() {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { login } = useAuth();
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -13,6 +19,7 @@ function Login() {
   const [rememberMe, setRememberMe] = useState(false);
   const [errors, setErrors] = useState({});
   const [message, setMessage] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -50,7 +57,7 @@ function Login() {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     setMessage("");
 
@@ -58,9 +65,50 @@ function Login() {
       return;
     }
 
-    setMessage(
-      "Your details are valid. Login authentication will be available after backend integration."
-    );
+    try {
+      setIsSubmitting(true);
+
+      const userData = await authService.login(
+        formData.email.trim(),
+        formData.password,
+        rememberMe
+      );
+
+      if (!userData || !userData.role) {
+        throw new Error("Your account does not have a valid assigned role.");
+      }
+
+      login(userData);
+
+      const dashboardRoutes = {
+        admin: "/admin/dashboard",
+        child: "/child/dashboard",
+        parent: "/parent/dashboard",
+        consultant: "/consultant/dashboard",
+        school: "/school/dashboard",
+      };
+
+      const dashboardPath = dashboardRoutes[userData.role];
+
+      if (!dashboardPath) {
+        throw new Error("Your account has an unsupported role.");
+      }
+
+      navigate(dashboardPath, { replace: true });
+    } catch (error) {
+      console.error("Login failed:", error);
+
+      const backendMessage =
+        error.data?.detail ||
+        error.data?.message ||
+        error.message;
+
+      setMessage(
+        backendMessage || "Unable to sign in. Please check your credentials."
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -197,14 +245,18 @@ function Login() {
             </label>
 
             {message && (
-              <p className="auth-status-message" role="status">
+              <p className="auth-status-message" role="alert">
                 {message}
               </p>
             )}
 
-            <button type="submit" className="auth-submit-button">
-              Sign In
-              <span aria-hidden="true">→</span>
+            <button
+              type="submit"
+              className="auth-submit-button"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? "Signing in..." : "Sign In"}
+              {!isSubmitting && <span aria-hidden="true">→</span>}
             </button>
           </form>
 
