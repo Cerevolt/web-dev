@@ -25,6 +25,7 @@ INSTALLED_APPS = [
     'apps.consultant',
     'apps.adminpanel',
     'apps.school',
+    'apps.reports',
 ]
 
 

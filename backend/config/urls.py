@@ -17,5 +17,8 @@ urlpatterns = [
 
     path('school/', include('apps.school.urls')),
 
+    path('reports/', include('apps.reports.urls')),
+
 ]
+
 
