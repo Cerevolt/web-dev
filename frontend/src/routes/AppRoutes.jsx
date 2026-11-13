@@ -6,6 +6,8 @@ import PrivateRoute from "./PrivateRoute";
 import RoleRoute from "./RoleRoute";
 
 import AdminDashboard from "../pages/admin/admindashboard";
+import RegisterUser from "../pages/admin/registeruser";
+import ManageUsers from "../pages/admin/manageusers";
 import AddConsultant from "../pages/admin/addconsultanat";
 import AddProduct from "../pages/admin/addproduct";
 import AdminReport from "../pages/admin/adminreport";
@@ -94,6 +96,8 @@ function AppRoutes() {
         {/* Admin pages */}
         <Route element={<RoleRoute allowedRoles={["admin"]} />}>
           <Route path="/admin/dashboard" element={<AdminDashboard />} />
+          <Route path="/admin/register-user" element={<RegisterUser />} />
+          <Route path="/admin/manage-users" element={<ManageUsers />} />
           <Route path="/admin/add-doctor" element={<AddConsultant />} />
           <Route path="/admin/add-product" element={<AddProduct />} />
           <Route path="/admin/reports" element={<AdminReport />} />
