@@ -3,6 +3,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import "./ChildSidebar.css";
 import ChildPlantMascot from "./ChildPlantMascot";
+import LogoutButton from "./LogoutButton";
 
 const ChildSidebar = () => {
   const links = [
@@ -46,6 +47,10 @@ const ChildSidebar = () => {
       <div className="child-sidebar-footer">
         <span>🌟</span>
         <p>Every little step counts!</p>
+      </div>
+
+      <div className="child-sidebar-logout">
+        <LogoutButton className="child-logout-button" />
       </div>
     </aside>
   );

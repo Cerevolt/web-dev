@@ -1,6 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import "./SchoolSidebar.css";
+import LogoutButton from "./LogoutButton";
 
 const schoolLinks = [
   { label: "Dashboard", path: "/school/dashboard", icon: "⌂" },
@@ -45,6 +46,9 @@ function SchoolSidebar() {
           <strong>School Admin</strong>
           <span>School Administrator</span>
         </div>
+      </div>
+      <div className="school-sidebar-logout">
+        <LogoutButton className="school-logout-button" />
       </div>
     </aside>
   );

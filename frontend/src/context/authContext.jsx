@@ -1,12 +1,36 @@
 
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
+import authService from "../services/authService";
 
 const AuthContext = createContext(null);
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const restoreSession = async () => {
+      if (!authService.isAuthenticated()) {
+        setIsLoading(false);
+        return;
+      }
+
+      try {
+        const currentUser = await authService.getCurrentUser();
+        setUser(currentUser);
+        setIsAuthenticated(true);
+      } catch (error) {
+        console.error("Session restoration failed:", error);
+        setUser(null);
+        setIsAuthenticated(false);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    restoreSession();
+  }, []);
 
   const login = (userData) => {
     setUser(userData);
@@ -36,11 +60,5 @@ export function AuthProvider({ children }) {
 }
 
 export function useAuth() {
-  const context = useContext(AuthContext);
-
-  if (!context) {
-    throw new Error("useAuth must be used inside an AuthProvider");
-  }
-
-  return context;
+  return useContext(AuthContext);
 }

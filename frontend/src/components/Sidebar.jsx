@@ -2,6 +2,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import "./Sidebar.css";
+import LogoutButton from "./LogoutButton";
 
 const Sidebar = () => {
   const getLinkClass = ({ isActive }) =>
@@ -55,6 +56,7 @@ const Sidebar = () => {
           <span>⚙</span>
           Settings
         </NavLink>
+         <LogoutButton className="sidebar-logout-button" />
       </div>
     </aside>
   );

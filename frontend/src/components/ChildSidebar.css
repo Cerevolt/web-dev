@@ -169,3 +169,44 @@
   background: #d5e8ff;
   color: #35649e;
 }
+.child-sidebar-logout {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid #c9ddf5;
+}
+
+.child-logout-button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border: none;
+  border-radius: 12px;
+  background: transparent;
+  color: #45658f;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 750;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.child-logout-button span {
+  width: 27px;
+  text-align: center;
+  font-size: 19px;
+}
+
+.child-logout-button:hover {
+  background: #d7e8ff;
+  color: #2459a6;
+}
+
+@media (max-width: 768px) {
+  .child-sidebar-logout {
+    margin-top: 8px;
+    padding-top: 8px;
+  }
+}

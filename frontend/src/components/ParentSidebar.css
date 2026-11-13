@@ -182,8 +182,14 @@
   }
 
   .parent-sidebar-bottom {
-    display: none;
-  }
+  display: block;
+  margin-top: 10px;
+}
+
+  .parent-sidebar-message,
+  .parent-sidebar-footer {
+  display: none;
+}
 }
 .parent-sidebar-profile h3 {
   color: #ffffff;
@@ -215,4 +221,86 @@
   color: #c7d6eb;
   font-size: 13px;
   font-weight: 500;
+}
+.parent-sidebar-logout {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.parent-logout-button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding: 12px 14px;
+  border: none;
+  border-radius: 9px;
+  background: transparent;
+  color: #c6d2e2;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.parent-logout-button span {
+  width: 20px;
+  text-align: center;
+  font-size: 18px;
+}
+
+.parent-logout-button:hover {
+  background: #263e63;
+  color: #ffffff;
+}
+
+@media (max-width: 768px) {
+  .parent-sidebar-bottom {
+    display: block;
+    margin-top: 10px;
+  }
+
+  .parent-sidebar-message,
+  .parent-sidebar-footer {
+    display: none;
+  }
+
+  .parent-sidebar-logout {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: none;
+  }
+
+  .parent-logout-button {
+    width: auto;
+    padding: 10px 14px;
+  }
+}
+.parent-sidebar-logout {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.parent-logout-button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding: 12px 14px;
+  border: none;
+  border-radius: 9px;
+  background: transparent;
+  color: #c6d2e2;
+  font-family: inherit;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.parent-logout-button:hover {
+  background: #263e63;
+  color: #ffffff;
 }

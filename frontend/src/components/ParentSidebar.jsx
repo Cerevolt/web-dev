@@ -2,6 +2,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import "./ParentSidebar.css";
+import LogoutButton from "./LogoutButton";
 
 const parentLinks = [
   { to: "/parent/dashboard", icon: "▦", label: "Dashboard" },
@@ -40,6 +41,9 @@ function ParentSidebar() {
         <div className="parent-sidebar-message">
           <span>♡</span>
           <p>Every small step in your child's journey matters.</p>
+        </div>
+        <div className="parent-sidebar-logout">
+          <LogoutButton className="parent-logout-button" />
         </div>
 
         <div className="parent-sidebar-footer">

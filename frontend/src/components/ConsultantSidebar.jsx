@@ -2,6 +2,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import "./ConsultantSidebar.css";
+import LogoutButton from "./LogoutButton";
 
 function ConsultantSidebar() {
   const menuItems = [
@@ -46,6 +47,10 @@ function ConsultantSidebar() {
           <h4>Consultant</h4>
           <p>Professional Account</p>
         </div>
+      </div>
+
+      <div className="consultant-sidebar-logout">
+        <LogoutButton className="consultant-logout-button" />
       </div>
     </aside>
   );

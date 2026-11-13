@@ -181,3 +181,37 @@
     margin-top: 16px;
   }
 }
+.school-sidebar-logout {
+  margin-top: 10px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.school-logout-button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding: 12px 13px;
+  border: none;
+  border-radius: 9px;
+  background: transparent;
+  color: #c6d2e2;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.school-logout-button span {
+  width: 20px;
+  text-align: center;
+  font-size: 18px;
+}
+
+.school-logout-button:hover {
+  background: #263e63;
+  color: #ffffff;
+}
