@@ -64,8 +64,6 @@ The application follows a modular architecture:
 
 The objective is to provide a centralised platform where authorised users can access relevant information and collaborate in supporting children's development.
 
----
-
 # 2. Project Objectives
 
 The main objectives of Cerevolt are:
@@ -78,8 +76,6 @@ The main objectives of Cerevolt are:
 - Present progress information through reports and visual indicators.
 - Provide interactive learning activities for children.
 - Implement authentication and role-based access control.
-
----
 
 # 3. User Roles
 
@@ -94,8 +90,6 @@ Cerevolt supports five user roles.
 | Child | Access learning activities, assessments, and rewards. |
 
 Each user should access only the pages and information permitted for their role.
-
----
 
 # 4. Key Features
 
@@ -146,8 +140,6 @@ Planned features include:
 - Doctor-support options.
 - Communication and follow-up support.
 
----
-
 # 5. Technology Stack
 
 ## Frontend
@@ -167,48 +159,46 @@ Planned features include:
 | Technology | Purpose |
 |---|---|
 | Python | Backend programming |
-| Django | Backend framework |
-| Django REST Framework | REST API development |
+| Django 5.2.4 | Backend framework |
+| Django REST Framework 3.17.1 | REST API development |
 | SQLite | Development database |
 
 ## Machine Learning
 
 The ML component is developed separately. Its final model, libraries, and integration interface will be documented when implementation is established.
 
----
-
 # 6. System Architecture
 
 The application follows a modular architecture.
 
 ```text
-                  USERS
-                    |
-                    v
-              REACT FRONTEND
-             (Presentation Layer)
-                    |
-                    v
-              DJANGO BACKEND
-             (Application Layer)
-                    |
-          +---------+---------+
-          |         |         |
-          v         v         v
-       DATABASE  AUTH      API SERVICES
-                              |
-                              v
-                       ML COMPONENT
-                        (Prediction)
-                              |
-                              v
-                        RESULT STORAGE
-                              |
-                              v
-                       ROLE-BASED REPORTS
+                    USERS
+                      |
+                      v
+                REACT FRONTEND
+               (Presentation Layer)
+                      |
+                      v
+                DJANGO BACKEND
+               (Application Layer)
+                      |
+          +-----------+-----------+
+          |           |           |
+          v           v           v
+       DATABASE     AUTH      API SERVICES
+                                  |
+                                  v
+                           ML COMPONENT
+                            (Prediction)
+                                  |
+                                  v
+                            RESULT STORAGE
+                                  |
+                                  v
+                           ROLE-BASED REPORTS
 ```
 
-### Architecture Components
+## Architecture Components
 
 **Frontend:** Handles user interaction, navigation, dashboards, forms, and visualisation.
 
@@ -217,8 +207,6 @@ The application follows a modular architecture.
 **Database:** Stores application information such as user records, child profiles, assessment records, and progress history.
 
 **Machine Learning:** Processes structured assessment data and generates outputs for professional evaluation.
-
----
 
 # 7. Project Structure
 
@@ -278,7 +266,7 @@ web-dev/
 
 # 8. Requirements Before Installation
 
-Before running Cerevolt, install the following software on your computer.
+Before running Cerevolt, install the following software on your Windows computer.
 
 You only need to install these tools once.
 
@@ -334,14 +322,20 @@ Node.js is required to run the React frontend.
 
 npm is the package manager installed alongside Node.js. It downloads and manages the packages needed by the frontend.
 
+**Recommended version: Node.js 22 LTS.**
+
 1. Visit https://nodejs.org/
-2. Download the recommended LTS version.
-3. Install it using the recommended options.
-4. Restart PowerShell or VS Code if it was already open.
+2. Download the Node.js 22 LTS Windows installer.
+3. Run the installer.
+4. Continue with the recommended installation options.
+5. Finish the installation.
+6. Restart PowerShell or VS Code if it was already open.
+
+Do not download npm separately. It is included with Node.js.
 
 ### Check the installation
 
-Run:
+Open a new PowerShell window and run:
 
 ```powershell
 node --version
@@ -355,16 +349,26 @@ npm --version
 
 Both commands should display version numbers.
 
+For example:
+
+```text
+v22.x.x
+```
+
+The exact patch version may differ.
+
 If either command is not recognised, Node.js may not have been installed correctly or may not be available in PATH.
 
 ## 8.4 Install Python
 
 Python is required to run the Django backend.
 
+**Recommended version: Python 3.12.x (64-bit).**
+
 1. Visit https://www.python.org/downloads/
-2. Download a Python version compatible with the backend dependencies.
+2. Download a Python 3.12 Windows installer (64-bit).
 3. Run the installer.
-4. On Windows, select **Add Python to PATH** if that option is available.
+4. Select **Add Python to PATH** if that option is available.
 5. Complete the installation.
 
 ### Check the installation
@@ -375,7 +379,13 @@ Open a new PowerShell window and run:
 python --version
 ```
 
-If that command does not work, try:
+You should see a version beginning with:
+
+```text
+Python 3.12
+```
+
+If the `python` command does not work, try:
 
 ```powershell
 py --version
@@ -383,9 +393,63 @@ py --version
 
 A Python version number should appear.
 
-**Important:** Do not install multiple Python versions randomly to fix an error. Check the backend dependencies and coordinate with the team if your installed version is incompatible.
+**Important:** Do not install multiple Python versions randomly to fix an error. Use Python 3.12 for the setup instructions in this README.
 
-## 8.5 Recommended VS Code Extensions
+## 8.5 Which Django version should you install?
+
+You do not need to download or install Django separately.
+
+Cerevolt uses:
+
+```text
+Django 5.2.4
+```
+
+The required Django version is already specified in:
+
+```text
+backend/requirements.txt
+```
+
+During backend setup, the command:
+
+```powershell
+pip install -r requirements.txt
+```
+
+automatically installs Django 5.2.4 and the other required backend packages.
+
+To verify the installed version after completing the backend installation, run:
+
+```powershell
+python -m django --version
+```
+
+Expected output:
+
+```text
+5.2.4
+```
+
+**Do not install Django manually using `pip install django`.** Always use the project's `requirements.txt` so everyone works with the same dependency versions.
+
+## 8.6 Do I need to install React, SQLite, or Django REST Framework separately?
+
+No.
+
+| Technology | Separate installation needed? | Explanation |
+|---|---|---|
+| React | No | Installed through `npm install`. |
+| Vite | No | Installed through `npm install`. |
+| React Router DOM | No | Installed through `npm install`. |
+| Django | No | Installed through `requirements.txt`. |
+| Django REST Framework | No | Installed through `requirements.txt`. |
+| SQLite | No | Included with Python's standard SQLite support. |
+| npm | No | Installed with Node.js. |
+
+Do not download these packages individually.
+
+## 8.7 Recommended VS Code Extensions
 
 Open VS Code, click the Extensions icon on the left, and search for these extensions:
 
@@ -421,19 +485,25 @@ You do not need to understand every technical detail. Copy the commands shown in
 
 ## Step 2: Choose where to save the project
 
-For this example, we will save Cerevolt on the Desktop.
+For a simple setup, we will save the project in your Windows user folder.
 
 Run:
 
 ```powershell
-cd Desktop
+cd $HOME
 ```
 
 Press Enter.
 
-The `cd` command means **change directory**. It moves the terminal into the folder you specify.
+This takes you to your personal Windows user folder.
 
-If you prefer another location, navigate to that folder instead.
+For example:
+
+```text
+C:\Users\YourUsername
+```
+
+This avoids problems that can happen when the Desktop folder is redirected to OneDrive.
 
 ## Step 3: Download Cerevolt from GitHub
 
@@ -521,7 +591,19 @@ A terminal will appear at the bottom of VS Code.
 
 This is where we will enter frontend commands.
 
-## Step 2: Enter the frontend folder
+## Step 2: Make sure the terminal is in the project folder
+
+The terminal should be inside the main `web-dev` folder.
+
+If it is not, run:
+
+```powershell
+cd $HOME\web-dev
+```
+
+Press Enter.
+
+## Step 3: Enter the frontend folder
 
 Copy:
 
@@ -537,11 +619,9 @@ Your terminal location should now end with:
 web-dev\frontend
 ```
 
-Why are we doing this?
+Because the React application is stored inside the `frontend` folder, we must enter that folder before running its commands.
 
-Because the React application is stored inside the `frontend` folder. We must enter that folder before running its commands.
-
-## Step 3: Install the frontend packages
+## Step 4: Install the frontend packages
 
 Copy:
 
@@ -578,7 +658,7 @@ This folder contains the downloaded packages.
 
 Wait until the command finishes and the terminal becomes ready for another command.
 
-## Step 4: Start the frontend
+## Step 5: Start the frontend
 
 Copy:
 
@@ -600,7 +680,7 @@ Local: http://localhost:5173/
 
 The exact message may differ slightly.
 
-## Step 5: Open Cerevolt in your browser
+## Step 6: Open Cerevolt in your browser
 
 Open Google Chrome or another browser.
 
@@ -655,7 +735,19 @@ You now have two terminals:
 
 Make sure you are using the new terminal for the backend instructions.
 
-## Step 2: Enter the backend folder
+## Step 2: Enter the main project folder
+
+A new terminal may open in the same folder as the first terminal.
+
+To make sure you are in the correct location, run:
+
+```powershell
+cd $HOME\web-dev
+```
+
+Press Enter.
+
+## Step 3: Enter the backend folder
 
 Copy:
 
@@ -673,7 +765,7 @@ web-dev\backend
 
 This is important because the Django project and its requirements file are inside the backend folder.
 
-## Step 3: Create a Python virtual environment
+## Step 4: Create a Python virtual environment
 
 Copy:
 
@@ -703,7 +795,7 @@ inside the backend folder.
 
 If the `venv` folder already exists because you previously completed this setup, do not create another environment. Continue to the activation step.
 
-## Step 4: Activate the virtual environment
+## Step 5: Activate the virtual environment
 
 Copy:
 
@@ -718,7 +810,7 @@ If activation succeeds, you should see `(venv)` at the beginning of the terminal
 For example:
 
 ```text
-(venv) PS C:\...\web-dev\backend>
+(venv) PS C:\Users\YourUsername\web-dev\backend>
 ```
 
 This means the virtual environment is active.
@@ -747,7 +839,7 @@ If the error continues, stop and share the complete error message with the team.
 
 Do not change the computer's permanent execution policy.
 
-## Step 5: Upgrade pip
+## Step 6: Upgrade pip
 
 Once the virtual environment is active, run:
 
@@ -761,7 +853,7 @@ This command updates the package installer inside the active environment.
 
 Wait for it to finish.
 
-## Step 6: Install backend dependencies
+## Step 7: Install backend dependencies
 
 Make sure the terminal is still inside:
 
@@ -785,7 +877,7 @@ The backend has a file named:
 requirements.txt
 ```
 
-It contains the Python packages required by Cerevolt.
+It contains the Python packages required by Cerevolt, including the specified Django version.
 
 This command reads that file and installs the listed packages inside the virtual environment.
 
@@ -795,7 +887,23 @@ Wait until it finishes.
 
 If installation fails, do not start installing random packages individually. Share the error with the team.
 
-## Step 7: Prepare the local database
+### Verify the Django version
+
+Run:
+
+```powershell
+python -m django --version
+```
+
+Expected output:
+
+```text
+5.2.4
+```
+
+If the output is different, stop and inform the backend developer before continuing.
+
+## Step 8: Prepare the local database
 
 This step is important, so read it before running the command.
 
@@ -843,7 +951,7 @@ If Django displays a migration conflict, missing migration, or database error, s
 
 **The purpose of this step is to apply the migrations already supplied with the project, not to create new ones.**
 
-## Step 8: Start the Django backend server
+## Step 9: Start the Django backend server
 
 After the database setup completes successfully, run:
 
@@ -976,7 +1084,7 @@ If an environment file is required for a particular development setup:
 4. Ask the project maintainer if you are unsure.
 5. Do not create duplicate or conflicting configuration values.
 
-### Security rules
+## Security rules
 
 - Never put passwords or private credentials in frontend environment files.
 - Never upload personal credentials to GitHub.
@@ -1026,20 +1134,40 @@ Follow these steps:
 
 Repeat the process for the other roles using their respective test accounts.
 
-### Important: Test accounts and local databases
+## Important: Test accounts and local databases
 
 Every developer has their own local database.
 
 Downloading the GitHub repository does not automatically give you another developer's database or login credentials.
 
+**A set of login credentials only works if the corresponding user account exists in the database used by that backend.**
+
 If you cannot log in:
 
 - First check that both servers are running.
 - Confirm that you are using the correct credentials.
-- Ask the backend developer or project administrator for an appropriate test account.
+- Ask the backend developer or project administrator to confirm that the supplied test accounts have been created in your local database.
 - Do not create random database records or change authentication code to bypass login.
 
 The administrative registration interface may be used where the supported account-creation process is available.
+
+**Important for demonstrations:** Do not assume that all dashboards will display populated, live information just because the login succeeds. Some features may still be under development or may need database records to be added.
+
+## Local access versus public access
+
+The address:
+
+```text
+http://localhost:5173/
+```
+
+opens the application on the computer where the frontend server is running.
+
+It is a local development address, not a public internet address.
+
+When your teammates run the project on their laptops, they will see the application locally on their own laptops.
+
+This README explains local development and testing. It does not deploy Cerevolt to a public hosting service.
 
 ---
 
@@ -1154,7 +1282,7 @@ The intended workflow is:
 
 The exact input features, prediction format, model architecture, and integration mechanism depend on the final ML implementation.
 
-### Clinical safety
+## Clinical safety
 
 ML predictions should support professional evaluation. They must not be presented as confirmed medical diagnoses without appropriate clinical assessment.
 
@@ -1190,7 +1318,7 @@ git --version
 
 **Solution:**
 
-1. Install Node.js from https://nodejs.org/
+1. Install Node.js 22 LTS from https://nodejs.org/
 2. Restart VS Code or PowerShell.
 3. Run:
 
@@ -1198,8 +1326,6 @@ git --version
 node --version
 npm --version
 ```
-
-If the problem continues, share the error message.
 
 ## Problem 3: `npm install` fails
 
@@ -1260,7 +1386,7 @@ py --version
 
 If this works, Python is installed through the Windows Python launcher.
 
-Use the appropriate Python command consistently when creating and activating your virtual environment.
+For the setup in this README, make sure Python 3.12 is installed and available.
 
 If neither command works, check the Python installation.
 
@@ -1350,7 +1476,7 @@ Do not terminate random processes.
 2. Confirm that the backend is running.
 3. Check that you are using the correct credentials.
 4. Check the browser Console and Network tabs.
-5. Ask the backend developer to verify the account and API response.
+5. Ask the backend developer to verify that the account exists in the local database and check the API response.
 
 Do not modify authentication code just to bypass a login problem.
 
@@ -1448,7 +1574,7 @@ The workflow is:
              MAINTAINER REVIEWS
                      |
                      v
-               APPROVAL
+                 APPROVAL
                      |
                      v
               MERGE INTO MAIN
@@ -1747,7 +1873,9 @@ The complete application should be tested to verify communication between React,
 
 ## Frontend Production Build
 
-To check whether the frontend can be built successfully, open a terminal inside the frontend folder:
+To check whether the frontend can be built successfully, open a terminal inside the frontend folder.
+
+If you are currently in the project root, run:
 
 ```powershell
 cd frontend
@@ -1778,7 +1906,6 @@ npm run preview
 Vite starts a local preview server. Open the exact address shown in the terminal.
 
 To stop the preview server, press `Ctrl + C`.
-
 
 ---
 
@@ -1815,7 +1942,7 @@ All contributors are encouraged to:
 10. Wait for maintainer review and approval.
 11. Keep the README updated when project setup or architecture changes.
 
-### If you are unable to run the project
+## If you are unable to run the project
 
 Please do not immediately change project files or run random commands.
 
@@ -1828,7 +1955,7 @@ Instead, share:
 
 This makes it easier for the team to identify the actual problem.
 
-### If you are unsure before modifying something
+## If you are unsure before modifying something
 
 Ask the relevant developer before changing:
 
@@ -1843,7 +1970,7 @@ The goal is to keep the shared project stable while everyone works on their assi
 
 ---
 
-# 24. License
+# 23. License
 
 The licensing terms for this project are to be determined by the project owners.
 
