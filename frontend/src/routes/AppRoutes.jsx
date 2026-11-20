@@ -1,6 +1,4 @@
-
-import React from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 import PrivateRoute from "./PrivateRoute";
 import RoleRoute from "./RoleRoute";
@@ -20,6 +18,7 @@ import About from "../pages/common/about";
 import NotFound from "../pages/common/notfound";
 
 import Login from "../pages/auth/Login";
+import Register from "../pages/auth/Register";
 import ForgetPassword from "../pages/auth/ForgetPassword";
 
 import ChildDashboard from "../pages/children/childdashboard.jsx";
@@ -87,6 +86,7 @@ function AppRoutes() {
       <Route path="/" element={<Home />} />
       <Route path="/about" element={<About />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
       <Route path="/forgot-password" element={<ForgetPassword />} />
       <Route path="/unauthorized" element={<Unauthorized />} />
 

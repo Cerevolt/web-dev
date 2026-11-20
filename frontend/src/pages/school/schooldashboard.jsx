@@ -1,9 +1,16 @@
-import React from "react";
+import { useEffect, useState } from "react";
+import {
+  getSchoolDashboard,
+  getSchoolSummary,
+} from "../../services/schoolService.js";
 import "./schooldashboard.css";
 
+// Only the two values with a directly compatible, school-scoped API are
+// loaded below. The remaining cards/sections are unchanged demo data because
+// no matching endpoint exists for them.
 const schoolStats = [
-  { label: "Total Students", value: "248", detail: "Across all classes" },
-  { label: "Active Classes", value: "12", detail: "Currently enrolled" },
+  { label: "Total Students", detail: "Across all classes", source: "students" },
+  { label: "Active Classes", detail: "Currently enrolled", source: "classes" },
   { label: "Assessments", value: "36", detail: "Scheduled this month" },
   { label: "Students Requiring Support", value: "18", detail: "Needs follow-up" },
 ];
@@ -44,6 +51,56 @@ const recentActivities = [
 ];
 
 function SchoolDashboard() {
+  const [counts, setCounts] = useState({ students: null, classes: null });
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    let active = true;
+
+    async function loadDashboardData() {
+      const [dashboardResult, summaryResult] = await Promise.allSettled([
+        getSchoolDashboard(),
+        getSchoolSummary(),
+      ]);
+
+      if (!active) return;
+
+      const nextCounts = {};
+      if (dashboardResult.status === "fulfilled") {
+        nextCounts.classes = dashboardResult.value?.class_count ?? 0;
+      }
+      if (summaryResult.status === "fulfilled") {
+        nextCounts.students = summaryResult.value?.total_enrollments ?? 0;
+      }
+
+      if (
+        dashboardResult.status === "rejected" ||
+        summaryResult.status === "rejected"
+      ) {
+        setError("Some school figures could not be loaded.");
+      }
+
+      setCounts(nextCounts);
+      setIsLoading(false);
+    }
+
+    loadDashboardData();
+
+    return () => {
+      active = false;
+    };
+  }, []);
+
+  const stats = schoolStats.map((stat) => {
+    if (!stat.source) return stat;
+    const value = counts[stat.source];
+    return {
+      ...stat,
+      value: isLoading || value === undefined || value === null ? "—" : value,
+    };
+  });
+
   return (
     <main className="school-dashboard-page">
       <header className="school-dashboard-header">
@@ -60,8 +117,17 @@ function SchoolDashboard() {
         </div>
       </header>
 
+      {isLoading && (
+        <p className="school-dashboard-status">Loading school data…</p>
+      )}
+      {!isLoading && error && (
+        <p className="school-dashboard-status school-dashboard-status-error">
+          {error}
+        </p>
+      )}
+
       <section className="school-dashboard-stats">
-        {schoolStats.map((stat) => (
+        {stats.map((stat) => (
           <article className="school-stat-card" key={stat.label}>
             <p>{stat.label}</p>
             <h2>{stat.value}</h2>

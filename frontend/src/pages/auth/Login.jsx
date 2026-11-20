@@ -1,13 +1,31 @@
-
 import { useState } from "react";
-import { Link, useNavigate, useLocation } from "react-router-dom";
-import { useAuth } from "../../context/authContext";
-import authService from "../../services/authService";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/useAuth.js";
+import { getDashboardForRole } from "../../routes/dashboardRoutes.js";
 import "./login.css";
+
+// Map backend detail messages to safe, user-friendly text. Unknown messages
+// are replaced with a generic fallback so server internals are never shown.
+const SAFE_MESSAGES = {
+  "Email and password are required.": "Please enter your email and password.",
+  "Invalid credentials.": "Invalid email or password.",
+  "User account is inactive.": "This account is inactive. Please contact support.",
+  "User profile not found.": "We couldn't find this account. Please contact support.",
+  // Covers legacy pending/rejected profiles without revealing which one.
+  "This account is not approved for login.":
+    "This account is not approved for sign in. Please contact support.",
+};
+
+function getSafeLoginMessage(error) {
+  const detail = error?.data?.detail;
+  if (detail && SAFE_MESSAGES[detail]) {
+    return SAFE_MESSAGES[detail];
+  }
+  return "Unable to sign in. Please try again.";
+}
 
 function Login() {
   const navigate = useNavigate();
-  const location = useLocation();
   const { login } = useAuth();
 
   const [formData, setFormData] = useState({
@@ -61,51 +79,28 @@ function Login() {
     event.preventDefault();
     setMessage("");
 
+    if (isSubmitting) {
+      return;
+    }
+
     if (!validateForm()) {
       return;
     }
 
+    setIsSubmitting(true);
+
     try {
-      setIsSubmitting(true);
+      const data = await login({
+        email: formData.email.trim(),
+        password: formData.password,
+        rememberMe,
+      });
 
-      const userData = await authService.login(
-        formData.email.trim(),
-        formData.password,
-        rememberMe
-      );
-
-      if (!userData || !userData.role) {
-        throw new Error("Your account does not have a valid assigned role.");
-      }
-
-      login(userData);
-
-      const dashboardRoutes = {
-        admin: "/admin/dashboard",
-        child: "/child/dashboard",
-        parent: "/parent/dashboard",
-        consultant: "/consultant/dashboard",
-        school: "/school/dashboard",
-      };
-
-      const dashboardPath = dashboardRoutes[userData.role];
-
-      if (!dashboardPath) {
-        throw new Error("Your account has an unsupported role.");
-      }
-
-      navigate(dashboardPath, { replace: true });
+      // Role comes from the backend response only - never from user input.
+      const role = data?.user?.role;
+      navigate(getDashboardForRole(role), { replace: true });
     } catch (error) {
-      console.error("Login failed:", error);
-
-      const backendMessage =
-        error.data?.detail ||
-        error.data?.message ||
-        error.message;
-
-      setMessage(
-        backendMessage || "Unable to sign in. Please check your credentials."
-      );
+      setMessage(getSafeLoginMessage(error));
     } finally {
       setIsSubmitting(false);
     }

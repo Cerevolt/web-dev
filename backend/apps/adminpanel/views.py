@@ -87,8 +87,10 @@ def admin_user_update(request, user_id):
     if user == request.user and 'role' in request.data:
         return Response({'detail': 'Cannot change your own role.'}, status=status.HTTP_403_FORBIDDEN)
 
+    profile = getattr(user, 'profile', None)
     data = request.data
     updated = False
+    role_changed = False
 
     if 'first_name' in data:
         user.first_name = data['first_name']
@@ -97,14 +99,24 @@ def admin_user_update(request, user_id):
         user.last_name = data['last_name']
         updated = True
     if 'email' in data:
-        user.email = data['email']
+        new_email = str(data['email']).strip().lower()
+        if User.objects.filter(email__iexact=new_email).exclude(id=user.id).exists():
+            return Response({'detail': 'Email already in use.'}, status=status.HTTP_400_BAD_REQUEST)
+        if Profile.objects.filter(normalized_email__iexact=new_email).exclude(user_id=user.id).exists():
+            return Response({'detail': 'Email already in use.'}, status=status.HTTP_400_BAD_REQUEST)
+        user.email = new_email
+        user.username = new_email
+        if profile:
+            profile.normalized_email = new_email
         updated = True
 
     if 'role' in data:
         new_role = data['role']
-        profile = getattr(user, 'profile', None)
         if not profile:
             return Response({'detail': 'User profile not found.'}, status=status.HTTP_400_BAD_REQUEST)
+        allowed_roles = [choice[0] for choice in Profile.ROLE_CHOICES]
+        if new_role not in allowed_roles:
+            return Response({'detail': 'Invalid role.'}, status=status.HTTP_400_BAD_REQUEST)
         if new_role == 'admin':
             if not request.user.is_superuser:
                 return Response({'detail': 'Cannot assign admin role.'}, status=status.HTTP_403_FORBIDDEN)
@@ -113,18 +125,21 @@ def admin_user_update(request, user_id):
             if not request.user.is_superuser:
                 return Response({'detail': 'Cannot change admin role.'}, status=status.HTTP_403_FORBIDDEN)
             user.is_superuser = False
-        profile.role = new_role
-        profile.save()
+        if profile.role != new_role:
+            profile.role = new_role
+            role_changed = True
+            AdminActivityLog.objects.create(
+                admin_user=request.user,
+                target_user=user,
+                action='role_changed',
+                description=f'Role changed to {new_role}'
+            )
         updated = True
-        AdminActivityLog.objects.create(
-            admin_user=request.user,
-            target_user=user,
-            action='role_changed',
-            description=f'Role changed to {new_role}'
-        )
 
     if updated:
         user.save()
+        if profile:
+            profile.save()
         AdminActivityLog.objects.create(
             admin_user=request.user,
             target_user=user,
