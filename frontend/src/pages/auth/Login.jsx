@@ -255,6 +255,10 @@ function Login() {
             </button>
           </form>
 
+          <p className="auth-switch">
+            Don't have an account? <Link to="/register">Create an account</Link>
+          </p>
+
           <p className="auth-legal">
             Your account access is managed through your assigned Cerevolt role.
           </p>
