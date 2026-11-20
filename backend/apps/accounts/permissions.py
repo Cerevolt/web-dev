@@ -18,3 +18,18 @@ class IsAdmin(BasePermission):
         return True
 
 
+class IsParent(BasePermission):
+    """Allow only authenticated, active users with a parent profile."""
+
+    message = 'Only parent users are allowed.'
+
+    def has_permission(self, request, view):
+        user = getattr(request, 'user', None)
+        if not user or not user.is_authenticated or not user.is_active:
+            return False
+        profile = getattr(user, 'profile', None)
+        if not profile:
+            return False
+        return getattr(profile, 'role', None) == 'parent'
+
+

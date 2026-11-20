@@ -7,19 +7,19 @@ from apps.school.models import School, Class, StudentEnrollment
 class AdminOverviewReportTests(APITestCase):
     def setUp(self):
         self.admin = User.objects.create_superuser(username='adminr@test.com', email='adminr@test.com', password='Pass1234!')
-        Profile.objects.create(user=self.admin, role='admin', normalized_email='adminr@test.com')
+        Profile.objects.create(user=self.admin, role='admin', status='approved', normalized_email='adminr@test.com')
         
         self.parent = User.objects.create_user(username='parentr@test.com', email='parentr@test.com', password='Pass1234!')
-        Profile.objects.create(user=self.parent, role='parent', normalized_email='parentr@test.com')
+        Profile.objects.create(user=self.parent, role='parent', status='approved', normalized_email='parentr@test.com')
         
         self.school = User.objects.create_user(username='schoolr@test.com', email='schoolr@test.com', password='Pass1234!')
-        Profile.objects.create(user=self.school, role='school', normalized_email='schoolr@test.com')
+        Profile.objects.create(user=self.school, role='school', status='approved', normalized_email='schoolr@test.com')
         
         self.consultant = User.objects.create_user(username='conr@test.com', email='conr@test.com', password='Pass1234!')
-        Profile.objects.create(user=self.consultant, role='consultant', normalized_email='conr@test.com')
+        Profile.objects.create(user=self.consultant, role='consultant', status='approved', normalized_email='conr@test.com')
         
         self.child = User.objects.create_user(username='childr@test.com', email='childr@test.com', password='Pass1234!')
-        Profile.objects.create(user=self.child, role='child', normalized_email='childr@test.com')
+        Profile.objects.create(user=self.child, role='child', status='approved', normalized_email='childr@test.com')
 
     def test_admin_gets_200(self):
         resp = self.client.post('/accounts/login/', {'email': 'adminr@test.com', 'password': 'Pass1234!'}, format='json')
@@ -86,24 +86,24 @@ class AdminOverviewReportTests(APITestCase):
 class SchoolSummaryReportTests(APITestCase):
     def setUp(self):
         self.admin = User.objects.create_superuser(username='sadmin@test.com', email='sadmin@test.com', password='Pass1234!')
-        Profile.objects.create(user=self.admin, role='admin', normalized_email='sadmin@test.com')
+        Profile.objects.create(user=self.admin, role='admin', status='approved', normalized_email='sadmin@test.com')
 
         self.school_owner = User.objects.create_user(username='sowner@test.com', email='sowner@test.com', password='Pass1234!')
-        Profile.objects.create(user=self.school_owner, role='school', normalized_email='sowner@test.com')
+        Profile.objects.create(user=self.school_owner, role='school', status='approved', normalized_email='sowner@test.com')
         self.school = School.objects.create(owner=self.school_owner, name='School A')
 
         self.school_owner2 = User.objects.create_user(username='sowner2@test.com', email='sowner2@test.com', password='Pass1234!')
-        Profile.objects.create(user=self.school_owner2, role='school', normalized_email='sowner2@test.com')
+        Profile.objects.create(user=self.school_owner2, role='school', status='approved', normalized_email='sowner2@test.com')
         self.school2 = School.objects.create(owner=self.school_owner2, name='School B')
 
         self.parent = User.objects.create_user(username='sparent@test.com', email='sparent@test.com', password='Pass1234!')
-        Profile.objects.create(user=self.parent, role='parent', normalized_email='sparent@test.com')
+        Profile.objects.create(user=self.parent, role='parent', status='approved', normalized_email='sparent@test.com')
 
         self.consultant = User.objects.create_user(username='scons@test.com', email='scons@test.com', password='Pass1234!')
-        Profile.objects.create(user=self.consultant, role='consultant', normalized_email='scons@test.com')
+        Profile.objects.create(user=self.consultant, role='consultant', status='approved', normalized_email='scons@test.com')
 
         self.child = User.objects.create_user(username='schild@test.com', email='schild@test.com', password='Pass1234!')
-        Profile.objects.create(user=self.child, role='child', normalized_email='schild@test.com')
+        Profile.objects.create(user=self.child, role='child', status='approved', normalized_email='schild@test.com')
 
     def test_admin_can_view_system_wide_summary(self):
         resp = self.client.post('/accounts/login/', {'email': 'sadmin@test.com', 'password': 'Pass1234!'}, format='json')

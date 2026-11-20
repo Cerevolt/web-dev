@@ -60,7 +60,7 @@ class ChatbotAPITests(TestCase):
     def setUp(self):
         self.client = APIClient()
         self.user = User.objects.create_user(username='cbuser@test.com', email='cbuser@test.com', password='Pass1234!')
-        Profile.objects.create(user=self.user, role='child', normalized_email='cbuser@test.com')
+        Profile.objects.create(user=self.user, role='child', status='approved', normalized_email='cbuser@test.com')
         resp = self.client.post('/accounts/login/', {'email': 'cbuser@test.com', 'password': 'Pass1234!'}, format='json')
         self.access = resp.data['access']
         self.client.credentials(HTTP_AUTHORIZATION=f'Bearer {self.access}')
@@ -99,7 +99,7 @@ class ChatbotAPITests(TestCase):
                 u = User.objects.create_superuser(username=f'cb_{role}@test.com', email=f'cb_{role}@test.com', password='Pass1234!')
             else:
                 u = User.objects.create_user(username=f'cb_{role}@test.com', email=f'cb_{role}@test.com', password='Pass1234!')
-            Profile.objects.create(user=u, role=role, normalized_email=f'cb_{role}@test.com')
+            Profile.objects.create(user=u, role=role, status='approved', normalized_email=f'cb_{role}@test.com')
             c = APIClient()
             resp = c.post('/accounts/login/', {'email': f'cb_{role}@test.com', 'password': 'Pass1234!'}, format='json')
             access = resp.data['access']
@@ -121,7 +121,7 @@ class ChatbotAPITests(TestCase):
         r = self.client.post('/chatbot/sessions/', {}, format='json')
         session_id = r.data['id']
         other = User.objects.create_user(username='othercb@test.com', email='othercb@test.com', password='Pass1234!')
-        Profile.objects.create(user=other, role='parent', normalized_email='othercb@test.com')
+        Profile.objects.create(user=other, role='parent', status='approved', normalized_email='othercb@test.com')
         c = APIClient()
         resp = c.post('/accounts/login/', {'email': 'othercb@test.com', 'password': 'Pass1234!'}, format='json')
         c.credentials(HTTP_AUTHORIZATION=f'Bearer {resp.data["access"]}')
