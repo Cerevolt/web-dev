@@ -121,6 +121,16 @@
   font-size: var(--text-sm);
 }
 
+.admin-data-state {
+  margin: 0 0 16px;
+  color: var(--color-text-secondary);
+  font-size: var(--text-sm);
+}
+
+.admin-data-error {
+  color: var(--color-danger);
+}
+
 /* Statistics Cards */
 
 .stats-grid {

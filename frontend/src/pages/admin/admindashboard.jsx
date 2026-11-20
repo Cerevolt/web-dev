@@ -1,37 +1,24 @@
-
-import React from "react";
+import { useEffect, useState } from "react";
 import Sidebar from "../../components/Sidebar";
+import { getAdminDashboard } from "../../services/adminService.js";
 import "./admindashboard.css";
 
-const statistics = [
-  {
-    title: "Total Users",
-    value: "1,248",
-    subtitle: "Registered users",
-    icon: "♙",
-    color: "blue",
-  },
-  {
-    title: "Total Children",
-    value: "684",
-    subtitle: "Child accounts",
-    icon: "♧",
-    color: "green",
-  },
-  {
-    title: "Total Doctors",
-    value: "32",
-    subtitle: "Medical professionals",
-    icon: "✚",
-    color: "purple",
-  },
-  {
-    title: "Total Teachers",
-    value: "86",
-    subtitle: "Registered educators",
-    icon: "▤",
-    color: "orange",
-  },
+// Card labels and colours are kept from the original dashboard. The backend
+// uses consultant/school roles in place of the older doctor/teacher concepts,
+// so those two cards are sourced from the matching current role counts.
+const STAT_CARDS = [
+  { title: "Total Users", subtitle: "Registered users", icon: "♙", color: "blue", source: "total_users" },
+  { title: "Total Children", subtitle: "Child accounts", icon: "♧", color: "green", source: "child" },
+  { title: "Total Doctors", subtitle: "Medical professionals", icon: "✚", color: "purple", source: "consultant" },
+  { title: "Total Teachers", subtitle: "Registered educators", icon: "▤", color: "orange", source: "school" },
+];
+
+const ROLE_LEGEND = [
+  { role: "Admin", source: "admin", color: "#4385f5" },
+  { role: "Parent", source: "parent", color: "#16b981" },
+  { role: "Doctor", source: "consultant", color: "#a78bfa" },
+  { role: "Teacher", source: "school", color: "#f5a623" },
+  { role: "Child", source: "child", color: "#f472b6" },
 ];
 
 const activities = [
@@ -41,15 +28,89 @@ const activities = [
   { name: "Teacher account added", detail: "Teacher", time: "2 hours ago" },
 ];
 
-const distribution = [
-  { role: "Admin", percentage: 5, color: "#4385f5" },
-  { role: "Parent", percentage: 25, color: "#16b981" },
-  { role: "Doctor", percentage: 10, color: "#a78bfa" },
-  { role: "Teacher", percentage: 20, color: "#f5a623" },
-  { role: "Child", percentage: 40, color: "#f472b6" },
-];
+function formatCount(value) {
+  return (Number(value) || 0).toLocaleString();
+}
+
+function buildDashboardData(data) {
+  const roleCounts = data?.users_by_role || {};
+  const totalUsers = Number(data?.total_users) || 0;
+
+  const statistics = STAT_CARDS.map((card) => ({
+    title: card.title,
+    subtitle: card.subtitle,
+    icon: card.icon,
+    color: card.color,
+    value: formatCount(
+      card.source === "total_users" ? totalUsers : roleCounts[card.source],
+    ),
+  }));
+
+  const distribution = ROLE_LEGEND.map((item) => ({
+    role: item.role,
+    color: item.color,
+    percentage: totalUsers
+      ? Math.round(((Number(roleCounts[item.source]) || 0) / totalUsers) * 100)
+      : 0,
+  }));
+
+  let cursor = 0;
+  const segments = distribution.map((item) => {
+    const start = cursor;
+    cursor += item.percentage;
+    return `${item.color} ${start}% ${cursor}%`;
+  });
+
+  return {
+    statistics,
+    distribution,
+    gradient: cursor > 0
+      ? `conic-gradient(${segments.join(", ")})`
+      : "conic-gradient(#e2e8f0 0% 100%)",
+  };
+}
+
+const placeholderStats = STAT_CARDS.map((card) => ({
+  title: card.title,
+  subtitle: card.subtitle,
+  icon: card.icon,
+  color: card.color,
+  value: "—",
+}));
+
+const placeholderDistribution = ROLE_LEGEND.map((item) => ({
+  role: item.role,
+  color: item.color,
+  percentage: 0,
+}));
 
 function AdminDashboard() {
+  const [dashboard, setDashboard] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    let active = true;
+
+    getAdminDashboard()
+      .then((data) => {
+        if (active) setDashboard(buildDashboardData(data));
+      })
+      .catch(() => {
+        if (active) setError("Unable to load dashboard data.");
+      })
+      .finally(() => {
+        if (active) setIsLoading(false);
+      });
+
+    return () => {
+      active = false;
+    };
+  }, []);
+
+  const statistics = dashboard?.statistics || placeholderStats;
+  const distribution = dashboard?.distribution || placeholderDistribution;
+
   return (
     <div className="admin-layout">
       <Sidebar />
@@ -85,6 +146,13 @@ function AdminDashboard() {
               </p>
             </div>
           </div>
+
+          {isLoading && (
+            <p className="admin-data-state">Loading dashboard data…</p>
+          )}
+          {!isLoading && error && (
+            <p className="admin-data-state admin-data-error">{error}</p>
+          )}
 
           {/* Statistics */}
           <section className="stats-grid">
@@ -146,7 +214,10 @@ function AdminDashboard() {
               </div>
 
               <div className="distribution-content">
-                <div className="donut-chart"></div>
+                <div
+                  className="donut-chart"
+                  style={dashboard ? { background: dashboard.gradient } : undefined}
+                ></div>
 
                 <div className="distribution-legend">
                   {distribution.map((item) => (

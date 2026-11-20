@@ -1,42 +1,37 @@
-
-import { apiGet, apiPost, apiPatch } from "./api";
+import { apiGet, apiPatch, apiPost } from "./api.js";
 
 const adminService = {
-  // Get admin dashboard statistics
+  // Upstream admin user-management API.
   getDashboard() {
     return apiGet("/adminpanel/dashboard/");
   },
 
-  // Get all registered users
   getUsers() {
     return apiGet("/adminpanel/users/");
   },
 
-  // Get details of a specific user
   getUser(userId) {
     return apiGet(`/adminpanel/users/${userId}/`);
   },
 
-  // Create a new user
   createUser(userData) {
     return apiPost("/accounts/users/", userData);
   },
 
-  // Update user information
   updateUser(userId, userData) {
-    return apiPatch(
-      `/adminpanel/users/${userId}/update/`,
-      userData
-    );
+    return apiPatch(`/adminpanel/users/${userId}/update/`, userData);
   },
 
-  // Activate or deactivate a user
   updateUserStatus(userId, action) {
-    return apiPost(
-      `/adminpanel/users/${userId}/status/`,
-      { action }
-    );
+    return apiPost(`/adminpanel/users/${userId}/status/`, { action });
+  },
+
+  // Current dashboard integration used by pages/admin/admindashboard.jsx.
+  getAdminDashboard() {
+    return apiGet("/adminpanel/dashboard/");
   },
 };
+
+export const getAdminDashboard = adminService.getAdminDashboard;
 
 export default adminService;
